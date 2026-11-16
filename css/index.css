@@ -1,3 +1,4 @@
+/* 色彩、字體與頁面捲動設定：集中管理全站共用的設計變數。 */
 :root {
   --pink: #fff4f7;
   --pink-strong: #ffabd2;
@@ -12,9 +13,11 @@
   scroll-padding-top: 64px;
 }
 
+/* 全站基礎：統一盒模型、文字顏色、背景與內文字體。 */
 * { box-sizing: border-box; }
 body { margin: 0; color: var(--ink); background: var(--pink); font-family: var(--font-body); line-height: 1.7; }
 a { color: inherit; }
+/* 頂部導覽：設定固定頁首、品牌名稱、導覽連結與手機選單按鈕。 */
 .site-header { background: rgba(255, 244, 247, .96); }
 .navbar { min-height: 50px; padding-top: .25rem; padding-bottom: .25rem; }
 .navbar-brand { color: var(--blue); font: 800 1rem/1 var(--font-round); }
@@ -25,6 +28,7 @@ a { color: inherit; }
 .nav-contact { padding: 5px 17px !important; border-radius: 30px; background: var(--blue); color: white !important; }
 .navbar-toggler { border: 1px solid rgba(87, 130, 195, .35); }
 .navbar-toggler:focus { box-shadow: 0 0 0 .15rem rgba(87, 130, 195, .2); }
+/* 共用區塊標題：設定區塊留白、背景顏色、標籤與中英標題樣式。 */
 .section-pad { padding: 82px 0 94px; }
 .about-section, .projects-section, .guestbook-section { background: var(--green-paper); }
 .gallery-section, .journal-section { background: var(--pink); }
@@ -34,6 +38,7 @@ a { color: inherit; }
 .section-subtitle { margin: 1px 0 0; color: #ee79b5; font: 700 1.15rem/1.4 var(--font-round); }
 .all-link { position: absolute; right: 0; margin-top: -41px; color: var(--blue); font-size: calc(.72rem + 5px); text-decoration: none; }
 .all-link:hover, .project-link:hover { color: #ed6dad; }
+/* 關於我與近期亮點：控制人物肖像、個人簡介、標籤及輪播版面。 */
 .about-content { margin-top: 6px; min-height: 390px; }
 .portrait-wrap { position: relative; display: flex; width: min(100%, 330px); height: 350px; margin: 0 auto; align-items: end; justify-content: center; }
 .portrait-wrap::before { position: absolute; bottom: 34px; width: 245px; height: 245px; border: 2px solid var(--yellow); border-radius: 50%; background: #ffe0e8; content: ""; }
@@ -58,6 +63,7 @@ a { color: inherit; }
 .carousel-inner { overflow: hidden; border-radius: 26px; }
 .carousel-item img { display: block; width: 100%; height: 270px; object-fit: cover; }
 .carousel-control-prev, .carousel-control-next { top: 42%; bottom: auto; width: 37px; height: 37px; border-radius: 50%; background: white; color: #ed65ad; opacity: 1; font-size: 1.8rem; line-height: 1; }
+/* 精選影像：建立作品格線、圖片裁切、分類標籤與滑入標題效果。 */
 .gallery-section { padding-top: 82px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 215px; gap: 14px; margin-top: 34px; }
 .gallery-photo { position: relative; min-width: 0; overflow: hidden; border: 4px solid #ffdb86; border-radius: 22px; background: #e9e8f1; }
@@ -73,6 +79,7 @@ a { color: inherit; }
 .photo-three, .photo-six { border-color: #ffb5d1; }
 .photo-chip { position: absolute; top: 8px; right: 10px; padding: 4px 12px; border-radius: 30px; background: #ffe18a; color: var(--blue); font-size: calc(.68rem + 5px); }
 .chip-pink { right: auto; left: 10px; background: #ffc1dd; }.chip-blue { top: auto; right: 8px; bottom: 8px; background: #b5dbff; }
+/* 專案作品卡片：呈現專案圖片、分類標籤、摘要與案例連結。 */
 .projects-section { padding-top: 82px; }
 .project-grid { margin-top: 26px; }
 .project-card { color: var(--blue); }
@@ -85,6 +92,7 @@ a { color: inherit; }
 .project-en { margin: 0 0 7px; color: #ee79b5; font: 1rem var(--font-round); }
 .project-desc { margin: 0; font-size: calc(.75rem + 5px); }
 .project-link { display: inline-block; margin-top: 10px; color: var(--blue); font-size: calc(.72rem + 5px); text-decoration: none; }
+/* 最新文章：設定文章列表、分類、箭頭與封面預覽卡片。 */
 .journal-section { padding-bottom: 58px; }
 .journal-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(230px, .9fr); gap: 24px; align-items: stretch; margin-top: 33px; }
 .journal-list { display: grid; gap: 10px; }
@@ -102,6 +110,7 @@ a { color: inherit; }
 .journal-feature-overlay { position: absolute; inset: auto 0 0; display: grid; gap: 4px; padding: 35px 16px 15px; background: linear-gradient(transparent, rgba(31, 57, 91, .82)); }
 .journal-feature-overlay strong { font-size: .9rem; }
 .journal-feature-overlay small { font-size: calc(.7rem + 5px); }
+/* 留言便利貼：設定留言表單、便條格線、色紙與文字樣式。 */
 .guestbook-section { padding-top: 82px; }
 .guest-intro { margin: 7px 0 24px; font-size: calc(.78rem + 5px); }
 .guest-wall { display: grid; grid-template-columns: 220px 1fr; gap: 20px; padding: 23px; border: 2px solid #f1b5dd; border-radius: 25px; background: #e3f2ff; }
@@ -121,6 +130,7 @@ a { color: inherit; }
 .sticky-note p { margin: 0; font-size: calc(.75rem + 5px); line-height: 1.55; }
 .sticky-note span { font: 600 .82rem var(--font-round); }
 .note-yellow { background: #fff59a; }.note-pink { background: #ffc5dd; }.note-blue { background: #baddf7; }.note-green { background: #d0f2b9; }.note-orange { background: #ffd5ae; }.note-lilac { background: #d7ccf4; }
+/* 聯絡區塊：設定背景照片、遮色層、聯絡方式與頁尾文字。 */
 .contact-section { position: relative; min-height: 390px; overflow: hidden; background: center 54% / cover no-repeat url("../images/IMG_7433.jpg"); }
 .contact-shade { position: absolute; inset: 0; background: rgba(255, 242, 234, .7); }
 .contact-content { position: relative; padding-top: 62px; padding-bottom: 20px; }
@@ -131,6 +141,7 @@ a { color: inherit; }
 .contact-links a:hover { color: #e965a6; }
 .contact-links .email-pill { padding: 7px 20px; border-radius: 30px; background: var(--yellow); color: #253e6a; }
 .contact-content footer { margin-top: 23px; padding-top: 18px; border-top: 1px solid #7796b866; font-size: calc(.7rem + 5px); }
+/* 文章共用版型：供文章頁與專案案例頁使用，統一標題、封面及內文寬度。 */
 .article-page { min-height: calc(100vh - 110px); padding: 64px 0 80px; background: var(--green-paper); }
 .article-page article { max-width: 820px; }
 .article-page h1 { margin: 14px 0 8px; color: var(--blue); font-size: clamp(2rem, 5vw, 3.3rem); font-weight: 800; line-height: 1.35; }
@@ -139,11 +150,13 @@ a { color: inherit; }
 .article-body { max-width: 700px; margin: 0 auto 30px; color: #55769e; font-size: .95rem; line-height: 2; }
 .article-footer { padding: 18px; background: var(--pink); color: var(--blue); font-size: calc(.75rem + 5px); text-align: center; }
 
+/* 桌面版排版：調整大螢幕時的區塊高度與影像格線。 */
 @media (min-width: 992px) {
   .about-section { padding-top: 82px; }
   .about-content { min-height: 400px; }
   .gallery-grid { grid-auto-rows: 215px; }
 }
+/* 平板與手機排版：縮小區塊留白，調整圖片、文章列表與留言格線。 */
 @media (max-width: 767.98px) {
   .section-pad { padding: 64px 0 74px; }
   .section-head .section-title { font-size: 1.7rem; }
@@ -170,6 +183,7 @@ a { color: inherit; }
   .contact-content { padding-top: 48px; }
   .contact-section { min-height: 390px; }
 }
+/* 窄螢幕微調：縮小影像格高、標籤與區塊間距。 */
 @media (max-width: 420px) {
   .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 130px; gap: 7px; }
   .photo-chip { top: 5px; right: 5px; padding: 3px 7px; font-size: calc(.58rem + 5px); }
@@ -182,7 +196,7 @@ a { color: inherit; }
   .contact-links { gap: 10px; }
 }
 
-/* Project cards and case study pages */
+/* 專案案例頁：補充卡片高度、案例內容寬度與行動版間距。 */
 .project-card { display: flex; flex-direction: column; min-height: 100%; }
 .project-image { height: 180px; }
 .project-desc { max-width: 48ch; line-height: 1.8; }
@@ -199,12 +213,13 @@ a { color: inherit; }
   .project-image { height: 155px; }
   .project-detail { padding-top: 42px; }
 }
+/* 動態偏好設定：使用者選擇減少動畫時，停用平滑捲動與轉場。 */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
 
 
-/* Requested home page spacing and scale refinements */
+/* 首頁版面微調：設定區塊留白、加寬簡介、近期亮點插圖與聯絡背景尺寸。 */
 .section-pad { padding-top: 104px; padding-bottom: 116px; }
 .about-section.section-pad { padding-top: 56px; }
 .about-section > .container { max-width: 1320px; }
