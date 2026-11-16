@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>我的作品集</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf6ee;--card:#fff;--ink:#22201c;--mute:#6f685d;--acc:#ff6b4a;--acc2:#3b5bdb;--line:#e8dfd0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150f;--card:#221f17;--ink:#f3ede0;--mute:#a69e8e;--acc:#ff8a6e;--acc2:#8ea2ff;--line:#383225}}
+:root[data-theme="dark"]{--bg:#17150f;--card:#221f17;--ink:#f3ede0;--mute:#a69e8e;--acc:#ff8a6e;--acc2:#8ea2ff;--line:#383225}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);height:auto}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Noto Sans TC",system-ui,sans-serif}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:18px;justify-content:center;padding:12px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav a{color:var(--mute);text-decoration:none;font-weight:500;font-size:14px}nav a:hover{color:var(--acc)}
+section{max-width:960px;margin:0 auto;padding:72px 20px}
+h2{font-size:28px;font-weight:900;margin:0 0 6px}h2+p{color:var(--mute);margin:0 0 28px}
+.hero{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;min-height:70vh}
+.hero h1{font-size:clamp(34px,7vw,60px);line-height:1.15;margin:0 0 14px;font-weight:900}
+.hero h1 span{color:var(--acc)}
+.avatar{width:180px;height:180px;border-radius:50% 45% 55% 50%;background:linear-gradient(135deg,var(--acc),var(--acc2));display:grid;place-items:center;font-size:72px;animation:morph 8s ease-in-out infinite}
+@keyframes morph{50%{border-radius:45% 55% 40% 60%;transform:rotate(6deg)}}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.tags b{font-weight:500;font-size:13px;padding:4px 12px;border:1px solid var(--line);border-radius:99px;background:var(--card)}
+.btn{display:inline-block;background:var(--acc);color:#fff;border:0;border-radius:10px;padding:10px 20px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 24px #0002}
+.thumb{height:150px;display:grid;place-items:center;font-size:44px;position:relative;overflow:hidden}
+.card div.info{padding:14px 16px}.card h3{margin:0;font-size:17px}.card p{margin:4px 0 0;color:var(--mute);font-size:14px}
+.t1{background:linear-gradient(135deg,#ffd6a5,#ff9f80)}.t2{background:linear-gradient(135deg,#bdb2ff,#8ea2ff)}.t3{background:linear-gradient(135deg,#caffbf,#7bd9a8)}
+.d1{background:#22201c}.d2{background:#3b5bdb}.d3{background:#0d7377}
+.d1 i{width:34px;height:34px;border-radius:8px;background:var(--acc);animation:spin 3s linear infinite}
+.d2 i{width:26px;height:26px;border-radius:50%;background:#fff;animation:bounce 1s ease-in-out infinite alternate}
+.d3 i{width:90px;height:6px;border-radius:9px;background:#fff;animation:wave 1.6s ease-in-out infinite}
+.paused i{animation-play-state:paused!important}
+@keyframes spin{to{transform:rotate(360deg) scale(1.3)}}
+@keyframes bounce{to{transform:translateY(-50px) scaleX(1.3)}}
+@keyframes wave{50%{transform:scaleX(.2);opacity:.4}}
+.hint{font-size:12px;color:var(--mute)}
+.form{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:26px}
+.form input,.form textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;width:100%}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.emo{font-size:22px;background:none;border:2px solid transparent;border-radius:10px;cursor:pointer;padding:2px 6px}.emo.on{border-color:var(--acc)}
+.wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.note{padding:16px;border-radius:4px 4px 14px 4px;color:#22201c;box-shadow:2px 4px 10px #0003;transform:rotate(var(--r));transition:.2s;animation:pop .4s}
+.note:hover{transform:rotate(0) scale(1.04)}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.note p{margin:6px 0;word-break:break-word}.note small{opacity:.7}
+.like{background:#fff8;border:0;border-radius:99px;cursor:pointer;padding:2px 10px;font:inherit;font-size:13px}
+footer{text-align:center;color:var(--mute);padding:30px;font-size:13px}
+@media(max-width:640px){.hero{grid-template-columns:1fr}.avatar{order:-1;width:120px;height:120px;font-size:48px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<nav><a href="#about">關於我</a><a href="#static">靜態作品</a><a href="#motion">動態作品</a><a href="#guest">留言板</a></nav>
+
+<section id="about" class="hero">
+<div>
+<p class="hint">👋 你好，歡迎來到我的小天地</p>
+<h1>我是 <span>你的名字</span>，<br>喜歡把想法做成作品。</h1>
+<p>在這裡寫下 2–3 句自我介紹：你的背景、專長、正在學什麼，以及你為什麼熱愛創作。（請替換成自己的文字）</p>
+<div class="tags"><b>設計</b><b>程式</b><b>插畫</b><b>影像</b></div>
+<a class="btn" href="#guest">去留言板打招呼 →</a>
+</div>
+<div class="avatar">😊</div>
+</section>
+
+<section id="static">
+<h2>靜態作品</h2><p>海報、插畫、網頁設計、攝影⋯⋯點擊卡片可換成你的圖片連結。</p>
+<div class="grid">
+<div class="card"><div class="thumb t1">🎨</div><div class="info"><h3>作品名稱 01</h3><p>簡述：類型 · 年份 · 使用工具</p></div></div>
+<div class="card"><div class="thumb t2">📷</div><div class="info"><h3>作品名稱 02</h3><p>簡述：類型 · 年份 · 使用工具</p></div></div>
+<div class="card"><div class="thumb t3">✏️</div><div class="info"><h3>作品名稱 03</h3><p>簡述：類型 · 年份 · 使用工具</p></div></div>
+</div>
+</section>
+
+<section id="motion">
+<h2>動態作品</h2><p>動畫、短片、互動網頁。點一下卡片可暫停／播放。</p>
+<div class="grid">
+<div class="card" onclick="this.classList.toggle('paused')"><div class="thumb d1"><i></i></div><div class="info"><h3>動畫作品 01</h3><p>簡述：動態圖形 · After Effects</p></div></div>
+<div class="card" onclick="this.classList.toggle('paused')"><div class="thumb d2"><i></i></div><div class="info"><h3>動畫作品 02</h3><p>簡述：角色動畫 · Lottie</p></div></div>
+<div class="card" onclick="this.classList.toggle('paused')"><div class="thumb d3"><i></i></div><div class="info"><h3>動畫作品 03</h3><p>簡述：互動網頁 · CSS / JS</p></div></div>
+</div>
+</section>
+
+<section id="guest">
+<h2>🎮 留言便利貼牆</h2><p>選一個心情、挑一個顏色、貼上你的便利貼，還能幫別人的留言按愛心！</p>
+<div class="form">
+<input id="nm" maxlength="16" placeholder="你的暱稱">
+<textarea id="msg" rows="3" maxlength="120" placeholder="想對我說什麼？（120 字內）"></textarea>
+<div class="row" id="emos"></div>
+<div class="row" id="cols"></div>
+<div class="row"><button class="btn" id="send">貼上去 📌</button><span class="hint" id="st"></span></div>
+</div>
+<div class="wall" id="wall"></div>
+</section>
+<footer>© 你的名字 · 用 Claude 打造</footer>
+
+<script>
+const EM=["😀","😍","🔥","👏","💡","🌈"],CO=["#ffe28a","#ffb4a2","#b5e2fa","#c7f0bd","#e0c3fc"];
+let em=EM[0],co=CO[0],db=null,mem=[];
+const $=id=>document.getElementById(id);
+EM.forEach((e,i)=>{const b=document.createElement("button");b.className="emo"+(i?"":" on");b.textContent=e;b.onclick=()=>{em=e;[...$("emos").children].forEach(x=>x.classList.toggle("on",x===b))};$("emos").append(b)});
+CO.forEach((c,i)=>{const b=document.createElement("button");b.className="emo"+(i?"":" on");b.style.cssText="width:30px;height:30px;background:"+c;b.setAttribute("aria-label","顏色"+(i+1));b.onclick=()=>{co=c;[...$("cols").children].forEach(x=>x.classList.toggle("on",x===b))};$("cols").append(b)});
+
+function render(list){
+  const w=$("wall");w.textContent="";
+  if(!list.length){w.innerHTML='<p class="hint">還沒有留言，當第一個吧！</p>';return}
+  list.forEach((m,i)=>{
+    const n=document.createElement("div");n.className="note";
+    n.style.cssText="background:"+(CO.includes(m.color)?m.color:CO[0])+";--r:"+((i*37%7)-3)+"deg";
+    const h=document.createElement("b");h.textContent=(m.emoji||"")+" "+(m.name||"匿名");
+    const p=document.createElement("p");p.textContent=m.text;
+    const f=document.createElement("div");f.className="row";
+    const l=document.createElement("button");l.className="like";l.textContent="❤ "+(m.likes||0);
+    l.onclick=()=>like(m);
+    const t=document.createElement("small");t.textContent=new Date(m.ts).toLocaleDateString("zh-TW");
+    f.append(l,t);n.append(h,p,f);w.append(n);
+  });
+}
+async function like(m){
+  if(db&&m.id){try{await db.collection("guestbook").doc(m.id).update({likes:(m.likes||0)+1})}catch(e){}}
+  else{m.likes=(m.likes||0)+1;render(mem)}
+}
+$("send").onclick=async()=>{
+  const name=$("nm").value.trim().slice(0,16),text=$("msg").value.trim().slice(0,120);
+  if(!text){$("st").textContent="請先寫點內容～";return}
+  const doc={name,text,emoji:em,color:co,likes:0,ts:Date.now()};
+  try{
+    if(db)await db.collection("guestbook").add(doc);
+    else{mem.unshift(doc);render(mem)}
+    $("msg").value="";$("st").textContent="已貼上！謝謝你 💛";
+  }catch(e){$("st").textContent="送出失敗，請稍後再試";}
+};
+render([]);
+(async()=>{
+  try{
+    const c=window.claude&&await claude.use("db");
+    if(!c){$("st").textContent="（目前為預覽模式，留言不會被保存）";return}
+    db=c;
+    db.collection("guestbook").orderBy("ts","desc").limit(60).onSnapshot(s=>{
+      render(s.docs.map(d=>({id:d.id,...d.data()})));
+    },()=>{db=null;$("st").textContent="（無法連線，留言僅暫存於本頁）"});
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
