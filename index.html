@@ -87,7 +87,7 @@
       </div>
     </section>
 
-    <!-- 精選影像：九格作品縮圖，點擊後開啟對應影像檔案。 -->
+    <!-- 精選影像：九格作品縮圖可依分類篩選，點擊後開啟對應影像檔案。 -->
     <section class="gallery-section section-pad" id="gallery">
       <div class="container">
         <div class="section-head">
@@ -95,16 +95,24 @@
           <h2 class="section-title">精選影像作品</h2>
           <p class="section-subtitle">Featured Gallery</p>
         </div>
-        <div class="gallery-grid">
-          <a class="gallery-photo photo-one" href="images/封面/DSC01404.jpg" aria-label="開啟劇情片作品"><img src="images/封面/DSC01404.jpg" alt="夕陽下的水岸風景" loading="lazy"><span class="photo-chip">攝影</span><span class="gallery-caption">劇情片</span></a>
-          <a class="gallery-photo photo-two" href="images/封面/IMG_8003.JPG"><img src="images/封面/IMG_8003.JPG" alt="生活影像紀錄" loading="lazy"><span class="gallery-caption">生活影像紀錄</span></a>
-          <a class="gallery-photo photo-three" href="images/平面創作/sunini作品.png"><img src="images/平面創作/sunini作品.png" alt="Sunini 平面設計作品" loading="lazy"><span class="photo-chip chip-pink">平面設計</span><span class="gallery-caption">Sunini 的想像世界</span></a>
-          <a class="gallery-photo photo-four" href="images/封面/DSC01108.jpg" aria-label="開啟日常採集簿作品"><img src="images/封面/DSC01108.jpg" alt="日常攝影作品" loading="lazy"><span class="gallery-caption">日常採集簿</span></a>
-          <a class="gallery-photo photo-five" href="images/策展/IMG_2517.JPG"><img src="images/策展/IMG_2517.JPG" alt="活動與影像紀錄" loading="lazy"><span class="photo-chip chip-blue">影片</span><span class="gallery-caption">belongings</span></a>
-          <a class="gallery-photo photo-six" href="images/平面創作/藝術玷堂.png"><img src="images/平面創作/藝術玷堂.png" alt="藝術玷堂插畫作品" loading="lazy"><span class="gallery-caption">藝術玷堂</span></a>
-          <a class="gallery-photo photo-two" href="images/封面/IMG_3193.JPG"><img src="images/封面/IMG_3193.JPG" alt="日常影像作品" loading="lazy"><span class="photo-chip">攝影</span><span class="gallery-caption">日常片刻</span></a>
-          <a class="gallery-photo photo-three" href="images/封面/IMG_7660.JPG"><img src="images/封面/IMG_7660.JPG" alt="影像創作作品" loading="lazy"><span class="gallery-caption">影像創作</span></a>
-          <a class="gallery-photo photo-five" href="images/IMG_3684.JPG"><img src="images/IMG_3684.JPG" alt="生活紀錄影像" loading="lazy"><span class="photo-chip chip-blue">紀錄</span><span class="gallery-caption">生活紀錄</span></a>
+        <!-- 作品分類：使用 Bootstrap pills 切換影片、照片、平面設計與繪畫。 -->
+        <ul class="nav nav-pills gallery-filters" aria-label="影像作品分類">
+          <li class="nav-item"><button class="nav-link" type="button" data-gallery-filter="video" aria-controls="galleryGrid" aria-pressed="false">影片</button></li>
+          <li class="nav-item"><button class="nav-link" type="button" data-gallery-filter="photo" aria-controls="galleryGrid" aria-pressed="false">照片</button></li>
+          <li class="nav-item"><button class="nav-link" type="button" data-gallery-filter="design" aria-controls="galleryGrid" aria-pressed="false">平面設計</button></li>
+          <li class="nav-item"><button class="nav-link" type="button" data-gallery-filter="painting" aria-controls="galleryGrid" aria-pressed="false">繪畫</button></li>
+        </ul>
+        <!-- 作品格線：依分類標記圖片，並以分類色彩顯示外框。 -->
+        <div class="gallery-grid" id="galleryGrid">
+          <a class="gallery-photo photo-one" data-category="video" href="images/封面/DSC01404.jpg" aria-label="開啟劇情片作品"><img src="images/封面/DSC01404.jpg" alt="夕陽下的水岸風景" loading="lazy"><span class="gallery-caption">劇情片</span></a>
+          <a class="gallery-photo photo-two" data-category="photo" href="images/封面/IMG_8003.JPG"><img src="images/封面/IMG_8003.JPG" alt="生活影像紀錄" loading="lazy"><span class="gallery-caption">生活影像紀錄</span></a>
+          <a class="gallery-photo photo-three" data-category="design" href="images/平面創作/sunini作品.png"><img src="images/平面創作/sunini作品.png" alt="Sunini 平面設計作品" loading="lazy"><span class="gallery-caption">Sunini 的想像世界</span></a>
+          <a class="gallery-photo photo-four" data-category="photo" href="images/封面/DSC01108.jpg" aria-label="開啟日常採集簿作品"><img src="images/封面/DSC01108.jpg" alt="日常攝影作品" loading="lazy"><span class="gallery-caption">日常採集簿</span></a>
+          <a class="gallery-photo photo-five" data-category="video" href="images/策展/IMG_2517.JPG"><img src="images/策展/IMG_2517.JPG" alt="活動與影像紀錄" loading="lazy"><span class="gallery-caption">belongings</span></a>
+          <a class="gallery-photo photo-six" data-category="painting" href="images/平面創作/藝術玷堂.png"><img src="images/平面創作/藝術玷堂.png" alt="藝術玷堂插畫作品" loading="lazy"><span class="gallery-caption">藝術玷堂</span></a>
+          <a class="gallery-photo photo-two" data-category="photo" href="images/封面/IMG_3193.JPG"><img src="images/封面/IMG_3193.JPG" alt="日常影像作品" loading="lazy"><span class="gallery-caption">日常片刻</span></a>
+          <a class="gallery-photo photo-three" data-category="photo" href="images/封面/IMG_7660.JPG"><img src="images/封面/IMG_7660.JPG" alt="影像創作作品" loading="lazy"><span class="gallery-caption">影像創作</span></a>
+          <a class="gallery-photo photo-five" data-category="photo" href="images/IMG_3684.JPG"><img src="images/IMG_3684.JPG" alt="生活紀錄影像" loading="lazy"><span class="gallery-caption">生活紀錄</span></a>
         </div>
       </div>
     </section>
@@ -217,6 +225,26 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- 頁面互動：處理留言計數、儲存、重繪，以及手機導覽選單收合。 -->
   <script>
+    // 影像分類：載入時隨機顯示三張作品，點選分類後顯示該類別全部作品。
+    const galleryFilters = document.querySelectorAll('[data-gallery-filter]');
+    const galleryItems = document.querySelectorAll('.gallery-photo[data-category]');
+    const initialGalleryItems = [...galleryItems];
+    for (let index = initialGalleryItems.length - 1; index > 0; index -= 1) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [initialGalleryItems[index], initialGalleryItems[randomIndex]] = [initialGalleryItems[randomIndex], initialGalleryItems[index]];
+    }
+    const initialGallerySelection = new Set(initialGalleryItems.slice(0, 3));
+    galleryItems.forEach((item) => { item.hidden = !initialGallerySelection.has(item); });
+    galleryFilters.forEach((button) => button.addEventListener('click', () => {
+      const selectedCategory = button.dataset.galleryFilter;
+      galleryItems.forEach((item) => { item.hidden = item.dataset.category !== selectedCategory; });
+      galleryFilters.forEach((filter) => {
+        const selected = filter === button;
+        filter.classList.toggle('active', selected);
+        filter.setAttribute('aria-pressed', String(selected));
+      });
+    }));
+
     // 留言元件：取得表單、文字計數、留言牆與狀態提示元素。
     const messageInput = document.querySelector('#guestMessage');
     const characterCount = document.querySelector('#characterCount');
