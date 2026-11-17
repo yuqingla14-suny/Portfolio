@@ -488,3 +488,6 @@ a.portrait-label:hover { color: var(--blue); }
 @media (prefers-reduced-motion: reduce) {
   .nav-contact { transition: none; }
 }
+
+/* 精選作品中英文標題：在作品名稱下方顯示後台填寫的英文標題。 */
+.artwork-modal-english-title { margin: -12px 0 18px; color: #ee79b5; font: 700 1rem/1.5 var(--font-round); }

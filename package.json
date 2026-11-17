@@ -1,0 +1,8 @@
+{
+  "name": "sunny-portfolio-content-admin",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node Backend/server.mjs"
+  }
+}

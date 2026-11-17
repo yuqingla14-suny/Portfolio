@@ -133,6 +133,7 @@
                   <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="關閉作品資訊"></button>
                   <p class="artwork-modal-eyebrow">SELECTED ARTWORK</p>
                   <h2 id="artworkModalTitle"></h2>
+                  <p class="artwork-modal-english-title"></p>
                   <p class="artwork-modal-medium"></p>
                   <p class="artwork-modal-description"></p>
                 </div>
@@ -289,6 +290,7 @@
         artworkImage.alt = trigger.dataset.artworkTitle;
       }
       artworkModal.querySelector('#artworkModalTitle').textContent = trigger.dataset.artworkTitle;
+      artworkModal.querySelector('.artwork-modal-english-title').textContent = trigger.dataset.artworkEnglishTitle || '';
       artworkModal.querySelector('.artwork-modal-medium').textContent = trigger.dataset.artworkMedium;
       artworkModal.querySelector('.artwork-modal-description').textContent = trigger.dataset.artworkDescription;
     });
@@ -344,5 +346,6 @@
     // 初次載入：將已儲存的留言顯示在留言牆。
     renderNotes();
   </script>
+  <script src="Backend/site.js"></script>
 </body>
 </html>

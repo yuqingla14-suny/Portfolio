@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff4f7">
+  <title>作品集內容管理｜Sunny</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="admin.css" rel="stylesheet">
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="login-card" id="authPanel" hidden>
+      <a class="brand" href="../index.html">Sunny · Portfolio</a>
+      <p class="eyebrow">CONTENT MANAGEMENT</p>
+      <h1 id="authTitle">登入後台</h1>
+      <p class="muted" id="authHelp">請使用管理員帳號登入。</p>
+      <form id="authForm">
+        <label>管理員帳號<input name="username" autocomplete="username" required minlength="3"></label>
+        <label>密碼<input name="password" type="password" autocomplete="current-password" required></label>
+        <label id="confirmPasswordRow" hidden>再次輸入密碼<input name="confirmPassword" type="password" autocomplete="new-password"></label>
+        <p class="form-error" id="authError" aria-live="polite"></p>
+        <button class="button primary" type="submit" id="authSubmit">登入</button>
+      </form>
+      <p class="security-note">首次使用請建立管理帳號。密碼會以雜湊形式儲存在本機。</p>
+    </section>
+
+    <div id="dashboard" hidden>
+      <header class="topbar">
+        <div><a class="brand" href="../index.html">Sunny · Portfolio</a><span class="admin-label">內容管理後台</span></div>
+        <div class="top-actions"><a class="button light" href="../index.html" target="_blank" rel="noopener">預覽網站 ↗</a><button class="button light" id="logoutButton" type="button">登出</button></div>
+      </header>
+      <section class="welcome panel">
+        <div><p class="eyebrow">網站內容更新</p><h1>管理你的作品集</h1><p class="muted">編輯資料後按「儲存並更新網站」。上傳多張專案圖片時，案例頁會自動顯示輪播。</p></div>
+        <button class="button primary save-button" id="saveButton" type="button">儲存並更新網站</button>
+      </section>
+      <p class="notice" id="statusMessage" aria-live="polite"></p>
+      <nav class="admin-tabs" aria-label="後台功能區塊">
+        <a href="#aboutEditor">關於我</a><a href="#galleryEditor">精選作品</a><a href="#projectEditor">專案作品</a><a href="#articleEditor">文章</a>
+      </nav>
+      <section class="panel editor-section" id="aboutEditor"><div class="section-heading"><div><p class="eyebrow">ABOUT ME</p><h2>關於我</h2></div></div>
+        <div class="form-grid">
+          <label>姓名標題<input id="aboutName"></label>
+          <label>近期想說的一句話<input id="announcement"></label>
+          <label class="wide">人物標籤（每行一個）<textarea id="aboutLabels" rows="3"></textarea></label>
+          <label class="wide">個人標籤文字（每行一個，不用輸入 #）<textarea id="aboutHashtags" rows="3"></textarea></label>
+          <label class="wide">關於我內文<textarea id="aboutBio" rows="7"></textarea></label>
+        </div>
+      </section>
+      <section class="panel editor-section" id="galleryEditor"><div class="section-heading"><div><p class="eyebrow">FEATURED GALLERY</p><h2>精選作品</h2><p class="muted">可選影片、照片、平面設計或繪畫；每件作品可上傳多張圖片。</p></div><button class="button secondary" data-add="gallery" type="button">＋ 新增作品</button></div><div class="card-list" id="galleryCards"></div></section>
+      <section class="panel editor-section" id="projectEditor"><div class="section-heading"><div><p class="eyebrow">SELECTED PROJECTS</p><h2>專案作品</h2><p class="muted">目前網站上的專案都已列在下方；新增多張圖片會在案例頁以輪播呈現。</p></div><button class="button secondary" data-add="projects" type="button">＋ 新增專案</button></div><div class="card-list" id="projectCards"></div></section>
+      <section class="panel editor-section" id="articleEditor"><div class="section-heading"><div><p class="eyebrow">JOURNAL</p><h2>文章上傳</h2><p class="muted">填寫標題、內文與圖片，儲存後會出現在網站文章列表。</p></div><button class="button secondary" data-add="articles" type="button">＋ 新增文章</button></div><div class="card-list" id="articleCards"></div></section>
+      <footer class="admin-footer">© 2026 sunny的作品集 · 內容儲存在此網站專案資料夾中</footer>
+    </div>
+  </main>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+{
+  "about": {
+    "name": "王鈺晴 Sunny",
+    "labels": [
+      "視覺設計",
+      "影像製作",
+      "地方創生",
+      "策展",
+      "創意發想"
+    ],
+    "hashtags": [
+      "陽明交大百川學程",
+      "見域工作室、山海屯社會企業實習生",
+      "跨領域學習者"
+    ],
+    "bio": "嗨，我是鈺晴。\n來自台南，目前就讀於國立陽明交通大學百川學士學位學程，主修傳播科技。\n我喜歡探索，也喜歡動手做。\n從影像、文字、設計，到地方議題與數位科技，我總是在不同領域之間尋找有趣的連結。這個網站記錄了我的學習、創作與探索，也整理了我一路累積的作品。希望透過作品，讓你看見我如何觀察、思考，以及想把想法付諸實踐。",
+    "announcement": "在這裡放上近期想說的一句話。"
+  },
+  "gallery": [
+    {
+      "id": "gallery-drama",
+      "type": "video",
+      "title": "劇情片",
+      "englishTitle": "Fiction Film",
+      "medium": "劇情短片、影像創作",
+      "description": "以影像敘事呈現劇情作品。點擊影片即可播放。",
+      "images": [
+        "images/封面/劇情片劇照.jpg"
+      ],
+      "videoUrl": "https://www.youtube-nocookie.com/embed/t2jgAbTGrwo"
+    },
+    {
+      "id": "gallery-grad-2",
+      "type": "photo",
+      "title": "畢業歌拍攝紀錄",
+      "englishTitle": "Graduation Song",
+      "medium": "活動攝影、團隊紀錄",
+      "description": "記錄畢業歌曲拍攝現場與參與創作的團隊。",
+      "images": [
+        "images/封面/畢業歌照片2.JPG"
+      ]
+    },
+    {
+      "id": "gallery-sunini",
+      "type": "design",
+      "title": "Sunini 的想像世界",
+      "englishTitle": "Sunini",
+      "medium": "數位插畫、平面設計",
+      "description": "以繽紛色彩與角色插畫描繪想像中的 Sunny，透過花朵、雲朵與明亮藍色背景營造童趣氛圍。",
+      "images": [
+        "images/平面創作/sunini作品.png"
+      ]
+    },
+    {
+      "id": "gallery-daily",
+      "type": "photo",
+      "title": "日常採集簿",
+      "englishTitle": "Everyday Collection",
+      "medium": "日常攝影",
+      "description": "從日常場景中收集值得停留的畫面，保存生活裡細微的觀察。",
+      "images": [
+        "images/封面/DSC01108.jpg"
+      ]
+    },
+    {
+      "id": "gallery-belongings",
+      "type": "video",
+      "title": "belongings",
+      "englishTitle": "belongings",
+      "medium": "舞蹈影像、策展紀錄",
+      "description": "以舞蹈呈現性別故事與身體經驗，記錄作品的策展現場。點擊影片即可播放。",
+      "images": [
+        "images/策展/IMG_2517.JPG"
+      ],
+      "videoUrl": "https://www.youtube-nocookie.com/embed/bCgb_QluHw4"
+    },
+    {
+      "id": "gallery-art-hall",
+      "type": "painting",
+      "title": "藝術玷堂",
+      "englishTitle": "Art Hall",
+      "medium": "水彩、手繪插畫",
+      "description": "以經典藝術作品為靈感，重新描繪美術館裡的人物與雕塑，加入現代角色，呈現幽默的藝術互動。",
+      "images": [
+        "images/平面創作/藝術玷堂.png"
+      ]
+    },
+    {
+      "id": "gallery-daily-moment",
+      "type": "photo",
+      "title": "日常片刻",
+      "englishTitle": "Everyday Moment",
+      "medium": "攝影、生活紀錄",
+      "description": "以影像留住日常片刻，記錄生活中的人物與場景。",
+      "images": [
+        "images/封面/IMG_3193.JPG"
+      ]
+    },
+    {
+      "id": "gallery-grad",
+      "type": "photo",
+      "title": "畢業歌拍攝現場",
+      "englishTitle": "Graduation Song Shoot",
+      "medium": "活動攝影、紀實攝影",
+      "description": "記錄畢業歌曲影像拍攝時的戶外場景與團隊工作。",
+      "images": [
+        "images/封面/畢業歌照片.JPG"
+      ]
+    },
+    {
+      "id": "gallery-documentary",
+      "type": "photo",
+      "title": "紀錄片獲獎紀錄",
+      "englishTitle": "Documentary Award",
+      "medium": "紀錄攝影",
+      "description": "記錄紀錄片作品獲獎時刻，保存創作歷程中的重要回憶。",
+      "images": [
+        "images/紀錄片照片.JPG"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "belongings",
+      "title": "舞蹈策展",
+      "englishTitle": "belongings",
+      "tags": [
+        "策劃展覽",
+        "性別議題",
+        "舞蹈"
+      ],
+      "year": "",
+      "description": "透過舞蹈說出兩人會經歷的性別故事。以策展作為觀看與對話的入口，整理作品概念、現場呈現與觀眾感受。",
+      "images": [
+        "images/策展/跳舞.JPEG",
+        "images/策展/策展道具.JPG",
+        "images/策展/IMG_2517.JPG",
+        "images/策展/IMG_7408.jpg"
+      ],
+      "visible": true
+    },
+    {
+      "id": "zine",
+      "title": "影像小誌",
+      "englishTitle": "zine",
+      "tags": [
+        "手作書",
+        "設計概念",
+        "專題"
+      ],
+      "year": "",
+      "description": "從走讀與影像紀錄出發，認識小誌的編輯方式，並將一學期的探索整理成一本自己的作品。",
+      "images": [
+        "images/小誌發表.jpg"
+      ],
+      "visible": true
+    },
+    {
+      "id": "sunini",
+      "title": "Sunini 的想像世界",
+      "englishTitle": "Sunini",
+      "tags": [
+        "平面設計",
+        "角色創作",
+        "插畫"
+      ],
+      "year": "",
+      "description": "以角色與插畫構成的視覺創作，透過色彩、造型與畫面安排，呈現 Sunini 的想像日常。",
+      "images": [
+        "images/平面創作/sunini作品.png"
+      ],
+      "visible": true
+    },
+    {
+      "id": "xinpu-radio",
+      "title": "新埔廣播",
+      "englishTitle": "Local Stories",
+      "tags": [
+        "地方紀錄",
+        "聲音",
+        "影像"
+      ],
+      "year": "",
+      "description": "透過聲音與影像記錄地方故事，從日常觀察出發，整理對新埔場域與人們的認識。",
+      "images": [
+        "images/新埔廣播.JPG"
+      ],
+      "visible": false
+    }
+  ],
+  "articles": [
+    {
+      "id": "central-beauty",
+      "title": "中央商場的美麗製造所：玉蘭美容工作室",
+      "subtitle": "走進傳統美容工作室，記錄手藝與地方日常。",
+      "date": "2026.08",
+      "category": "專題報導",
+      "summary": "介紹傳統美容技藝",
+      "content": "介紹傳統美容技藝。",
+      "image": "images/小誌發表.jpg"
+    },
+    {
+      "id": "bamboo",
+      "title": "把這麼變希望，台南竹產業的復興之旅",
+      "subtitle": "看見異「竹」維生的人們",
+      "date": "2025.11",
+      "category": "專題報導",
+      "summary": "看見異「竹」維生的人們",
+      "content": "看見異「竹」維生的人們。",
+      "image": "images/小誌發表.jpg"
+    },
+    {
+      "id": "museum",
+      "title": "沒有預設的人生路，輾轉走進史博館",
+      "subtitle": "人生沒有白走的路",
+      "date": "2025.10",
+      "category": "人物報導",
+      "summary": "人生沒有白走的路",
+      "content": "人生沒有白走的路。",
+      "image": "images/小誌發表.jpg"
+    },
+    {
+      "id": "pomelo",
+      "title": "麻豆「梁爺爺柚農園」採果樂，親子同樂體驗食農教育",
+      "subtitle": "有機農園與親子體驗活動",
+      "date": "2025.09",
+      "category": "紀實報導",
+      "summary": "有機農園與親子體驗活動",
+      "content": "有機農園與親子體驗活動。",
+      "image": "images/小誌發表.jpg"
+    }
+  ]
+}
