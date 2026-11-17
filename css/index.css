@@ -301,3 +301,9 @@ a { color: inherit; }
   .gallery-grid { grid-auto-rows: 145px; gap: 12px; }
   .highlight-doodle { width: 58px; }
 }
+
+/* 專案圖片框：圖片與外框維持 4:3 橫式比例，各螢幕尺寸使用相同比例。 */
+.project-image { height: auto; aspect-ratio: 4 / 3; }
+.project-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* 專案卡片間距：只增加欄位間的空隙，保持最左與最右邊界不變。 */
+.project-grid { --bs-gutter-x: 2.5rem; }
