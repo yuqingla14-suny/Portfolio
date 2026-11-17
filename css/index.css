@@ -437,3 +437,54 @@ a { color: inherit; }
 /* 關於我首屏：放大姓名標題，並拉開自我介紹與近期亮點的距離。 */
 .name-title { font-size: clamp(2.4375rem, calc(4vw + 7px), 3.5375rem); }
 .about-content { margin-bottom: 100px; }
+
+/* 近期分享公告：在近期亮點輪播下方以大聲公圖示搭配一句話呈現。 */
+.highlight-announcement { display: flex; width: min(100%, 940px); min-height: 78px; align-items: center; justify-content: center; gap: 14px; margin: 28px auto 0; padding: 16px 26px; border: 2px solid #ffca47; border-radius: 24px; background: rgba(255, 246, 91, .28); color: #526e99; }
+.announcement-megaphone { flex: 0 0 auto; font-size: 1.8rem; line-height: 1; }
+.highlight-announcement p { margin: 0; font-size: 1.05rem; font-weight: 700; line-height: 1.7; text-align: center; }
+@media (max-width: 575.98px) {
+  .highlight-announcement { min-height: 68px; gap: 10px; margin-top: 20px; padding: 13px 16px; }
+  .announcement-megaphone { font-size: 1.5rem; }
+  .highlight-announcement p { font-size: .95rem; }
+}
+
+/* 近期分享公告：移除卡片底色與邊框，改為單行文字呈現。 */
+.highlight-announcement { width: fit-content; min-height: 0; justify-content: flex-start; gap: 10px; margin-top: 22px; padding: 0; border: 0; border-radius: 0; background: transparent; }
+.highlight-announcement p { text-align: left; }
+@media (max-width: 575.98px) {
+  .highlight-announcement { margin-top: 18px; padding: 0; }
+}
+
+/* 關於我互動效果：人物照片輕微放大，藥丸標籤浮起並加深陰影。 */
+.portrait-wrap img { transition: scale .28s ease, filter .28s ease; }
+.portrait-label { transition: scale .2s ease, box-shadow .2s ease, filter .2s ease; cursor: default; }
+.portrait-wrap:hover img { scale: 1.025; filter: drop-shadow(0 5px 7px rgba(82, 110, 153, .16)); }
+.portrait-wrap:hover .portrait-label { box-shadow: 0 5px 12px rgba(82, 110, 153, .16); }
+.portrait-wrap .portrait-label:hover { position: absolute; scale: 1.08; filter: brightness(1.03); }
+@media (prefers-reduced-motion: reduce) {
+  .portrait-wrap img, .portrait-label { transition: none; }
+}
+
+/* 關於我獨立互動：取消整組連動，只讓游標碰到的單一元素放大與顯示陰影。 */
+.portrait-wrap:hover img { scale: 1; filter: none; }
+.portrait-wrap:hover .portrait-label { box-shadow: none; }
+.portrait-wrap img:hover { scale: 1.025; filter: drop-shadow(0 5px 7px rgba(82, 110, 153, .16)); }
+.portrait-wrap .portrait-label:hover { scale: 1.06; box-shadow: 0 5px 12px rgba(82, 110, 153, .18); filter: brightness(1.03); }
+
+/* 人物標籤連結：保留藥丸外觀並顯示可點擊游標。 */
+a.portrait-label { color: var(--blue); text-decoration: none; cursor: pointer; }
+a.portrait-label:hover { color: var(--blue); }
+
+/* 個人姓名互動：游標移入姓名時輕微放大，加入陰影與柔焦感。 */
+.name-title { width: fit-content; max-width: 100%; transition: scale .24s ease, filter .24s ease; }
+.name-title:hover { scale: 1.035; filter: drop-shadow(0 5px 8px rgba(82, 110, 153, .2)) blur(.25px); }
+@media (prefers-reduced-motion: reduce) {
+  .name-title { transition: none; }
+}
+
+/* 導覽聯絡按鈕：滑鼠移入時顯示柔和陰影，不改變按鈕尺寸與位置。 */
+.nav-contact { box-shadow: 0 0 0 rgba(82, 110, 153, 0); transition: box-shadow .22s ease; }
+.nav-contact:hover { box-shadow: 0 5px 14px rgba(82, 110, 153, .28); }
+@media (prefers-reduced-motion: reduce) {
+  .nav-contact { transition: none; }
+}
