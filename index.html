@@ -104,15 +104,32 @@
         </ul>
         <!-- 作品格線：依分類標記圖片，並以分類色彩顯示外框。 -->
         <div class="gallery-grid" id="galleryGrid">
-          <a class="gallery-photo photo-one" data-category="video" href="images/封面/劇情片劇照.jpg" aria-label="開啟劇情片作品"><img src="images/封面/劇情片劇照.jpg" alt="劇情片拍攝劇照" loading="lazy"><span class="gallery-caption">劇情片</span></a>
-          <a class="gallery-photo photo-two" data-category="photo" href="images/封面/畢業歌照片2.JPG"><img src="images/封面/畢業歌照片2.JPG" alt="畢業歌拍攝團隊合照" loading="lazy"><span class="gallery-caption">畢業歌拍攝紀錄</span></a>
-          <a class="gallery-photo photo-three" data-category="design" href="images/平面創作/sunini作品.png"><img src="images/平面創作/sunini作品.png" alt="Sunini 平面設計作品" loading="lazy"><span class="gallery-caption">Sunini 的想像世界</span></a>
-          <a class="gallery-photo photo-four" data-category="photo" href="images/封面/DSC01108.jpg" aria-label="開啟日常採集簿作品"><img src="images/封面/DSC01108.jpg" alt="日常攝影作品" loading="lazy"><span class="gallery-caption">日常採集簿</span></a>
-          <a class="gallery-photo photo-five" data-category="video" href="images/策展/IMG_2517.JPG"><img src="images/策展/IMG_2517.JPG" alt="活動與影像紀錄" loading="lazy"><span class="gallery-caption">belongings</span></a>
-          <a class="gallery-photo photo-six" data-category="painting" href="images/平面創作/藝術玷堂.png"><img src="images/平面創作/藝術玷堂.png" alt="藝術玷堂插畫作品" loading="lazy"><span class="gallery-caption">藝術玷堂</span></a>
-          <a class="gallery-photo photo-two" data-category="photo" href="images/封面/IMG_3193.JPG"><img src="images/封面/IMG_3193.JPG" alt="日常影像作品" loading="lazy"><span class="gallery-caption">日常片刻</span></a>
-          <a class="gallery-photo photo-three" data-category="photo" href="images/封面/畢業歌照片.JPG"><img src="images/封面/畢業歌照片.JPG" alt="畢業歌戶外拍攝團隊合照" loading="lazy"><span class="gallery-caption">畢業歌拍攝現場</span></a>
-          <a class="gallery-photo photo-five" data-category="photo" href="images/紀錄片照片.JPG"><img src="images/紀錄片照片.JPG" alt="紀錄片作品獲獎紀錄" loading="lazy"><span class="gallery-caption">紀錄片獲獎紀錄</span></a>
+          <a class="gallery-photo photo-one" data-category="video" href="#galleryArtworkModal" data-bs-toggle="modal" data-bs-target="#galleryArtworkModal" data-artwork-type="video" data-artwork-video="https://www.youtube-nocookie.com/embed/t2jgAbTGrwo" data-artwork-title="劇情片" data-artwork-medium="劇情短片、影像創作" data-artwork-description="以影像敘事呈現劇情作品。點擊影片即可播放。" aria-label="播放影片：劇情片"><img src="images/封面/劇情片劇照.jpg" alt="劇情片拍攝劇照" loading="lazy"><span class="gallery-caption">劇情片</span></a>
+          <a class="gallery-photo photo-two" data-category="photo" href="#galleryArtworkModal" data-bs-toggle="modal" data-bs-target="#galleryArtworkModal" data-artwork-type="image" data-artwork-src="images/封面/畢業歌照片2.JPG" data-artwork-title="畢業歌拍攝紀錄" data-artwork-medium="活動攝影、團隊紀錄" data-artwork-description="記錄畢業歌曲拍攝現場與參與創作的團隊。" aria-label="查看照片：畢業歌拍攝紀錄"><img src="images/封面/畢業歌照片2.JPG" alt="畢業歌拍攝團隊合照" loading="lazy"><span class="gallery-caption">畢業歌拍攝紀錄</span></a>
+          <a class="gallery-photo photo-three" data-category="design" href="#galleryArtworkModal" data-bs-toggle="modal" data-bs-target="#galleryArtworkModal" data-artwork-type="image" data-artwork-src="images/平面創作/sunini作品.png" data-artwork-title="Sunini 的想像世界" data-artwork-medium="數位插畫、平面設計" data-artwork-description="以繽紛色彩與角色插畫描繪想像中的 Sunny，透過花朵、雲朵與明亮藍色背景營造童趣氛圍。" aria-label="查看作品：Sunini 的想像世界"><img src="images/平面創作/sunini作品.png" alt="Sunini 的想像世界插畫" loading="lazy"><span class="gallery-caption">Sunini 的想像世界</span></a>
+          <a class="gallery-photo photo-four" data-category="photo" href="#galleryArtworkModal" data-bs-toggle="modal" data-bs-target="#galleryArtworkModal" data-artwork-type="image" data-artwork-src="images/封面/DSC01108.jpg" data-artwork-title="日常採集簿" data-artwork-medium="日常攝影" data-artwork-description="從日常場景中收集值得停留的畫面，保存生活裡細微的觀察。" aria-label="查看照片：日常採集簿"><img src="images/封面/DSC01108.jpg" alt="日常攝影作品" loading="lazy"><span class="gallery-caption">日常採集簿</span></a>
+          <a class="gallery-photo photo-five" data-category="video" href="#galleryArtworkModal" data-bs-toggle="modal" data-bs-target="#galleryArtworkModal" data-artwork-type="video" data-artwork-video="https://www.youtube-nocookie.com/embed/bCgb_QluHw4" data-artwork-title="belongings" data-artwork-medium="舞蹈影像、策展紀錄" data-artwork-description="以舞蹈呈現性別故事與身體經驗，記錄作品的策展現場。點擊影片即可播放。" aria-label="播放影片：belongings"><img src="images/策展/IMG_2517.JPG" alt="belongings 舞蹈作品紀錄" loading="lazy"><span class="gallery-caption">belongings</span></a>
+          <a class="gallery-photo photo-six" data-category="painting" href="#galleryArtworkModal" data-bs-toggle="modal" data-bs-target="#galleryArtworkModal" data-artwork-type="image" data-artwork-src="images/平面創作/藝術玷堂.png" data-artwork-title="藝術玷堂" data-artwork-medium="水彩、手繪插畫" data-artwork-description="以經典藝術作品為靈感，重新描繪美術館裡的人物與雕塑，加入現代角色，呈現幽默的藝術互動。" aria-label="查看作品：藝術玷堂"><img src="images/平面創作/藝術玷堂.png" alt="藝術玷堂水彩插畫" loading="lazy"><span class="gallery-caption">藝術玷堂</span></a>
+          <a class="gallery-photo photo-two" data-category="photo" href="#galleryArtworkModal" data-bs-toggle="modal" data-bs-target="#galleryArtworkModal" data-artwork-type="image" data-artwork-src="images/封面/IMG_3193.JPG" data-artwork-title="日常片刻" data-artwork-medium="攝影、生活紀錄" data-artwork-description="以影像留住日常片刻，記錄生活中的人物與場景。" aria-label="查看照片：日常片刻"><img src="images/封面/IMG_3193.JPG" alt="日常影像作品" loading="lazy"><span class="gallery-caption">日常片刻</span></a>
+          <a class="gallery-photo photo-three" data-category="photo" href="#galleryArtworkModal" data-bs-toggle="modal" data-bs-target="#galleryArtworkModal" data-artwork-type="image" data-artwork-src="images/封面/畢業歌照片.JPG" data-artwork-title="畢業歌拍攝現場" data-artwork-medium="活動攝影、紀實攝影" data-artwork-description="記錄畢業歌曲影像拍攝時的戶外場景與團隊工作。" aria-label="查看照片：畢業歌拍攝現場"><img src="images/封面/畢業歌照片.JPG" alt="畢業歌戶外拍攝團隊合照" loading="lazy"><span class="gallery-caption">畢業歌拍攝現場</span></a>
+          <a class="gallery-photo photo-five" data-category="photo" href="#galleryArtworkModal" data-bs-toggle="modal" data-bs-target="#galleryArtworkModal" data-artwork-type="image" data-artwork-src="images/紀錄片照片.JPG" data-artwork-title="紀錄片獲獎紀錄" data-artwork-medium="紀錄攝影" data-artwork-description="記錄紀錄片作品獲獎時刻，保存創作歷程中的重要回憶。" aria-label="查看照片：紀錄片獲獎紀錄"><img src="images/紀錄片照片.JPG" alt="紀錄片作品獲獎紀錄" loading="lazy"><span class="gallery-caption">紀錄片獲獎紀錄</span></a>
+        </div>
+        <!-- 作品放大視窗：左側顯示放大的作品，右側列出標題、媒介和簡介。 -->
+        <div class="modal fade" id="galleryArtworkModal" tabindex="-1" aria-labelledby="artworkModalTitle" aria-hidden="true">
+          <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content artwork-modal">
+              <div class="artwork-modal-layout">
+                <div class="artwork-modal-image-wrap"><img class="artwork-modal-image" alt="" hidden><iframe class="artwork-modal-video" title="作品影片" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen hidden></iframe></div>
+                <div class="artwork-modal-info">
+                  <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="關閉作品資訊"></button>
+                  <p class="artwork-modal-eyebrow">SELECTED ARTWORK</p>
+                  <h2 id="artworkModalTitle"></h2>
+                  <p class="artwork-modal-medium"></p>
+                  <p class="artwork-modal-description"></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -244,6 +261,29 @@
         filter.setAttribute('aria-pressed', String(selected));
       });
     }));
+
+    // 作品放大視窗：依作品類型顯示放大照片或 YouTube 影片，並更新作品資訊。
+    const artworkModal = document.querySelector('#galleryArtworkModal');
+    artworkModal.addEventListener('show.bs.modal', (event) => {
+      const trigger = event.relatedTarget;
+      const artworkImage = artworkModal.querySelector('.artwork-modal-image');
+      const artworkVideo = artworkModal.querySelector('.artwork-modal-video');
+      const isVideo = trigger.dataset.artworkType === 'video';
+      artworkImage.hidden = isVideo;
+      artworkVideo.hidden = !isVideo;
+      if (isVideo) {
+        artworkVideo.src = trigger.dataset.artworkVideo;
+        artworkVideo.title = trigger.dataset.artworkTitle;
+      } else {
+        artworkVideo.removeAttribute('src');
+        artworkImage.src = trigger.dataset.artworkSrc;
+        artworkImage.alt = trigger.dataset.artworkTitle;
+      }
+      artworkModal.querySelector('#artworkModalTitle').textContent = trigger.dataset.artworkTitle;
+      artworkModal.querySelector('.artwork-modal-medium').textContent = trigger.dataset.artworkMedium;
+      artworkModal.querySelector('.artwork-modal-description').textContent = trigger.dataset.artworkDescription;
+    });
+    artworkModal.addEventListener('hidden.bs.modal', () => artworkModal.querySelector('.artwork-modal-video').removeAttribute('src'));
 
     // 留言元件：取得表單、文字計數、留言牆與狀態提示元素。
     const messageInput = document.querySelector('#guestMessage');
