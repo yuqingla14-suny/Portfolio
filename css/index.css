@@ -425,3 +425,15 @@ a { color: inherit; }
 #highlightsCarousel .carousel-control-next { display: flex; align-items: center; justify-content: center; }
 #highlightsCarousel .carousel-control-prev span,
 #highlightsCarousel .carousel-control-next span { position: relative; top: -3px; line-height: 1; }
+
+/* 近期亮點標題配色：中文標題改為深藍，兩側波浪線改為黃色。 */
+.highlight-heading h2 { color: #526e99; }
+.highlight-heading::before,
+.highlight-heading::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 34'%3E%3Cpath d='M3 10 C14 26 28 27 36 16 C43 6 30 3 27 12 C24 24 47 29 57 17 C65 7 52 3 49 12 C46 24 69 29 79 17 C87 7 74 3 71 12 C68 24 91 29 101 17 C109 7 96 3 93 12 C90 24 113 29 123 17 C131 7 118 3 115 12 C112 24 135 29 145 17 C153 7 140 3 137 12 C134 24 157 29 167 17 C175 7 162 3 159 12 C156 24 179 29 189 17 C197 7 184 3 181 12 C178 24 201 29 211 17 C219 7 206 3 203 12 C200 24 223 29 233 17 C241 7 228 3 225 12 C222 24 245 29 255 17 C263 7 250 3 247 12 C244 24 268 27 297 10' fill='none' stroke='%23ffca47' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E"); }
+
+/* 近期亮點標題：使用與「關於我」區塊標題相同的藍色。 */
+.highlight-heading h2 { color: var(--blue); }
+
+/* 關於我首屏：放大姓名標題，並拉開自我介紹與近期亮點的距離。 */
+.name-title { font-size: clamp(2.4375rem, calc(4vw + 7px), 3.5375rem); }
+.about-content { margin-bottom: 100px; }
