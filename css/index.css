@@ -309,3 +309,54 @@ a { color: inherit; }
 .project-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
 /* 專案卡片間距：只增加欄位間的空隙，保持最左與最右邊界不變。 */
 .project-grid { --bs-gutter-x: 2.5rem; }
+
+/* 專案案例資訊：輪播照片置頂，下方左側列出作品資料、右側呈現介紹文字。 */
+.project-carousel { max-width: none; margin: 0; }
+.project-carousel .carousel-inner { border: 2px solid #f3b6dd; border-radius: 22px; background: #fcffe9; }
+.project-carousel .carousel-item { height: clamp(260px, 48vw, 560px); }
+.project-carousel .carousel-item img { width: 100%; height: 100%; object-fit: contain; }
+.project-carousel .carousel-control-prev,
+.project-carousel .carousel-control-next { top: 50%; bottom: auto; width: 46px; height: 46px; background: rgba(87, 130, 195, .82); transform: translateY(-50%); }
+.project-carousel .carousel-control-prev { left: 18px; }
+.project-carousel .carousel-control-next { right: 18px; }
+.project-detail-information { display: grid; grid-template-columns: minmax(230px, .82fr) minmax(0, 1.18fr); gap: 38px; margin-top: 38px; }
+.project-detail-meta { min-width: 0; }
+.project-detail-meta .section-tag { display: inline-block; }
+.project-detail-meta h1 { margin: 17px 0 2px; }
+.project-detail-meta .project-en { margin-bottom: 12px; }
+.project-detail-tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; }
+.project-detail-tags span { padding: 3px 11px; border: 1px solid #ffc7db; border-radius: 30px; background: var(--yellow); color: var(--blue); font-size: .88rem; }
+.project-detail-year { display: flex; gap: 12px; margin: 21px 0 0; color: #55769e; font-size: .95rem; }
+.project-detail-year strong { color: #ee79b5; }
+.project-detail-copy { min-width: 0; padding: 8px 0 8px 34px; border-left: 2px solid var(--pink-strong); color: #55769e; }
+.project-detail-copy h2 { margin: 0 0 16px; color: var(--blue); font-size: 1.35rem; font-weight: 800; }
+.project-detail-copy p { margin: 0; font-size: 1rem; line-height: 2; }
+.project-detail > article > .project-link { margin-top: 32px; }
+@media (max-width: 767.98px) {
+  .project-detail-information { grid-template-columns: 1fr; gap: 22px; margin-top: 26px; }
+  .project-detail-copy { padding: 22px 0 0; border-top: 2px solid var(--pink-strong); border-left: 0; }
+  .project-carousel .carousel-item { height: clamp(230px, 68vw, 390px); }
+  .project-carousel .carousel-control-prev,
+  .project-carousel .carousel-control-next { width: 38px; height: 38px; }
+  .project-carousel .carousel-control-prev { left: 10px; }
+  .project-carousel .carousel-control-next { right: 10px; }
+}
+
+/* 案例照片框：依參考畫面統一橫式比例，移除粉色描邊並以裁切填滿。 */
+.project-carousel .carousel-inner { aspect-ratio: 16 / 9; overflow: hidden; border: 0; border-radius: 20px; background: #fcffe9; }
+.project-carousel .carousel-item { height: 100%; aspect-ratio: 16 / 9; }
+.project-carousel .carousel-item img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.project-carousel .carousel-control-prev,
+.project-carousel .carousel-control-next { top: 50%; bottom: auto; width: 46px; height: 46px; border-radius: 50%; background: rgba(87, 130, 195, .88); transform: translateY(-50%); }
+.project-carousel .carousel-control-prev { left: 2%; }
+.project-carousel .carousel-control-next { right: 2%; }
+@media (max-width: 767.98px) {
+  .project-carousel .carousel-inner,
+  .project-carousel .carousel-item { aspect-ratio: 16 / 9; height: auto; }
+  .project-carousel .carousel-item img { height: 100%; }
+  .project-carousel .carousel-control-prev,
+  .project-carousel .carousel-control-next { width: 38px; height: 38px; }
+}
+
+/* 專案卡片連結：縮小「了解更多」文字，維持卡片連結辨識度。 */
+.project-card .project-link { font-size: calc(.72rem + 2px); }

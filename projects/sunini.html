@@ -16,17 +16,40 @@
 <body>
   <!-- 頁首導覽：返回作品集首頁的專案作品區。 -->
   <header class="site-header sticky-top"><nav class="navbar container" aria-label="主要導覽"><a class="navbar-brand" href="../index.html#projects">王鈺晴 <span>· Portfolio</span></a><a class="nav-link" href="../index.html#projects">← 返回專案作品</a></nav></header>
-  <!-- 案例內容：呈現專案名稱、作品分類、主視覺、簡介與返回連結。 -->
+  <!-- 案例內容：上方呈現作品輪播，下方分欄介紹作品資訊與創作內容。 -->
   <main class="article-page project-detail"><article class="container">
     <a class="project-back" href="../index.html#projects">← 專案作品</a>
-    <span class="section-tag">Selected Project</span>
-    <h1>Sunini 的想像世界</h1><p class="project-en">Sunini</p>
-    <p class="project-detail-tags">平面設計・角色創作・插畫</p>
-    <img class="article-cover" src="../images/平面創作/sunini作品.png" alt="Sunini 平面設計作品">
-    <div class="article-body"><p>以角色與插畫構成的視覺創作，透過色彩、造型與畫面安排，呈現 Sunini 的想像日常。</p><h2>作品紀錄</h2><p>這項作品收錄於作品集，呈現從觀察、整理到視覺表達的創作過程。</p></div>
+    <!-- 作品輪播：使用 Bootstrap 輪播呈現此專案的相關照片。 -->
+    <div id="carousel-sunini" class="carousel slide project-carousel" aria-label="Sunini 的想像世界作品照片">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../images/平面創作/sunini作品.png" alt="Sunini 平面設計作品">
+        </div>
+      </div>
+    </div>
+    <!-- 作品資訊：左側放名稱與分類資訊，右側放作品介紹，中間以直線區隔。 -->
+    <div class="project-detail-information">
+      <aside class="project-detail-meta">
+        <span class="section-tag">Selected Project</span>
+        <h1>Sunini 的想像世界</h1>
+        <p class="project-en">Sunini</p>
+        <div class="project-detail-tags" aria-label="作品分類標籤">
+          <span>平面設計</span>
+          <span>角色創作</span>
+          <span>插畫</span>
+        </div>
+        <p class="project-detail-year"><strong>年份</strong><span>未標註</span></p>
+      </aside>
+      <section class="project-detail-copy" aria-labelledby="project-intro-title">
+        <h2 id="project-intro-title">作品介紹</h2>
+        <p>以角色與插畫構成的視覺創作，透過色彩、造型與畫面安排，呈現 Sunini 的想像日常。</p>
+      </section>
+    </div>
     <a class="project-link" href="../index.html#projects">返回專案作品 <span aria-hidden="true">→</span></a>
   </article></main>
   <!-- 頁尾：顯示案例頁版權資訊。 -->
-  <footer class="article-footer">© 2026 王鈺晴</footer>
+  <footer class="article-footer">© 2026 sunny的作品集</footer>
+  <!-- Bootstrap 元件程式：啟用作品照片輪播的上一張與下一張按鈕。 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
