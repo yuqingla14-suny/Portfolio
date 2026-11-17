@@ -20,10 +20,10 @@ a { color: inherit; }
 /* 頂部導覽：設定固定頁首、品牌名稱、導覽連結與手機選單按鈕。 */
 .site-header { background: rgba(255, 244, 247, .96); }
 .navbar { min-height: 50px; padding-top: .25rem; padding-bottom: .25rem; }
-.navbar-brand { color: var(--blue); font: 800 1rem/1 var(--font-round); }
+.navbar-brand { color: var(--blue); font: 800 calc(1rem + 3px)/1 var(--font-round); }
 .navbar-brand:hover { color: var(--blue); }
-.navbar-brand span { font-size: .9rem; }
-.nav-link { color: var(--ink); font: 600 .75rem var(--font-body); }
+.navbar-brand span { font-size: calc(.9rem + 3px); }
+.nav-link { color: var(--ink); font: 600 calc(.75rem + 3px) var(--font-body); }
 .nav-link:hover { color: #ed6dad; }
 .nav-contact { padding: 5px 17px !important; border-radius: 30px; background: var(--blue); color: white !important; }
 .navbar-toggler { border: 1px solid rgba(87, 130, 195, .35); }
@@ -167,7 +167,7 @@ a { color: inherit; }
 .contact-links a { color: var(--blue); text-decoration: none; }
 .contact-links a:hover { color: #e965a6; }
 .contact-links .email-pill { padding: 7px 20px; border-radius: 30px; background: var(--yellow); color: #253e6a; }
-.contact-content footer { margin-top: 23px; padding-top: 18px; border-top: 1px solid #7796b866; font-size: calc(.7rem + 5px); }
+.contact-content footer { margin-top: 43px; padding-top: 18px; border-top: 1px solid #7796b866; font-size: calc(.7rem + 5px); }
 /* 工具清單卡片：以淡粉底色、黃色技能標籤與網站字體呈現工具分類。 */
 .contact-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(360px, .9fr); gap: 42px; align-items: center; }
 .toolbox-card { padding: 32px; border: 2px solid var(--pink-strong); border-radius: 24px; background: rgba(255, 244, 247, .96); box-shadow: 9px 10px 0 rgba(255, 246, 91, .72); color: var(--ink); }
