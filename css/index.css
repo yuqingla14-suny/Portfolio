@@ -360,3 +360,68 @@ a { color: inherit; }
 
 /* 專案卡片連結：縮小「了解更多」文字，維持卡片連結辨識度。 */
 .project-card .project-link { font-size: calc(.72rem + 2px); }
+
+/* 近期亮點標題：縮小中文標題與英文副標題之間的距離。 */
+.highlight-heading h2 { margin-bottom: 13px; }
+
+/* 近期亮點區塊：整體向下移動 10px。 */
+.highlights { margin-top: 46px; }
+@media (max-width: 767.98px) {
+  .highlights { margin-top: 30px; }
+}
+
+/* 近期亮點區塊：在目前位置上再向下移動 20px。 */
+.highlights { margin-top: 66px; }
+@media (max-width: 767.98px) {
+  .highlights { margin-top: 50px; }
+}
+
+/* 近期亮點標題組：直接縮小中文標題與英文副標題之間的空白。 */
+.highlight-heading h2 { margin-bottom: 3px; }
+.highlight-heading .section-subtitle { margin-top: 0; }
+
+/* 近期亮點兩側留白裝飾：以絕對定位新增長版藍色波浪線，不影響原有版面。 */
+.highlights-frame::before,
+.highlights-frame::after { position: absolute; z-index: 0; top: 50%; display: block; width: clamp(180px, 18vw, 300px); height: 34px; background: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 34'%3E%3Cpath d='M3 10 C14 26 28 27 36 16 C43 6 30 3 27 12 C24 24 47 29 57 17 C65 7 52 3 49 12 C46 24 69 29 79 17 C87 7 74 3 71 12 C68 24 91 29 101 17 C109 7 96 3 93 12 C90 24 113 29 123 17 C131 7 118 3 115 12 C112 24 135 29 145 17 C153 7 140 3 137 12 C134 24 157 29 167 17 C175 7 162 3 159 12 C156 24 179 29 189 17 C197 7 184 3 181 12 C178 24 201 29 211 17 C219 7 206 3 203 12 C200 24 223 29 233 17 C241 7 228 3 225 12 C222 24 245 29 255 17 C263 7 250 3 247 12 C244 24 268 27 297 10' fill='none' stroke='%235782c3' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E"); content: ""; pointer-events: none; transform: translateY(-50%); }
+.highlights-frame::before { right: calc(100% + 28px); }
+.highlights-frame::after { left: calc(100% + 28px); }
+@media (max-width: 1100px) {
+  .highlights-frame::before,
+  .highlights-frame::after { display: none; }
+}
+
+/* 近期亮點標題兩側：將藍色長波浪線放在標題文字旁，不改變標題位置。 */
+.highlight-heading { position: relative; display: block; }
+.highlight-heading::before,
+.highlight-heading::after { position: absolute; top: 30px; width: clamp(180px, 28vw, 480px); height: 34px; content: ""; background: center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 34'%3E%3Cpath d='M3 10 C14 26 28 27 36 16 C43 6 30 3 27 12 C24 24 47 29 57 17 C65 7 52 3 49 12 C46 24 69 29 79 17 C87 7 74 3 71 12 C68 24 91 29 101 17 C109 7 96 3 93 12 C90 24 113 29 123 17 C131 7 118 3 115 12 C112 24 135 29 145 17 C153 7 140 3 137 12 C134 24 157 29 167 17 C175 7 162 3 159 12 C156 24 179 29 189 17 C197 7 184 3 181 12 C178 24 201 29 211 17 C219 7 206 3 203 12 C200 24 223 29 233 17 C241 7 228 3 225 12 C222 24 245 29 255 17 C263 7 250 3 247 12 C244 24 268 27 297 10' fill='none' stroke='%235782c3' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E"); pointer-events: none; }
+.highlight-heading::before { right: calc(100% + 24px); }
+.highlight-heading::after { left: calc(100% + 24px); }
+@media (max-width: 1100px) {
+  .highlight-heading::before,
+  .highlight-heading::after { width: clamp(80px, 15vw, 180px); }
+}
+@media (max-width: 767.98px) {
+  .highlight-heading::before,
+  .highlight-heading::after { top: 22px; width: 55px; height: 22px; }
+  .highlight-heading::before { right: calc(100% + 8px); }
+  .highlight-heading::after { left: calc(100% + 8px); }
+}
+
+/* 標題裝飾定位：讓波浪線以置中的標題文字為基準向左右延伸。 */
+.highlight-heading { width: fit-content; max-width: 100%; margin-right: auto; margin-left: auto; text-align: center; }
+.highlights-frame::before,
+.highlights-frame::after { display: none; }
+
+/* 近期亮點裝飾線：左右各延長至少 30px，顏色改為網站粉色。 */
+.highlight-heading::before,
+.highlight-heading::after { width: clamp(210px, 30vw, 510px); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 34'%3E%3Cpath d='M3 10 C14 26 28 27 36 16 C43 6 30 3 27 12 C24 24 47 29 57 17 C65 7 52 3 49 12 C46 24 69 29 79 17 C87 7 74 3 71 12 C68 24 91 29 101 17 C109 7 96 3 93 12 C90 24 113 29 123 17 C131 7 118 3 115 12 C112 24 135 29 145 17 C153 7 140 3 137 12 C134 24 157 29 167 17 C175 7 162 3 159 12 C156 24 179 29 189 17 C197 7 184 3 181 12 C178 24 201 29 211 17 C219 7 206 3 203 12 C200 24 223 29 233 17 C241 7 228 3 225 12 C222 24 245 29 255 17 C263 7 250 3 247 12 C244 24 268 27 297 10' fill='none' stroke='%23ed6dad' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E"); }
+@media (max-width: 1100px) {
+  .highlight-heading::before,
+  .highlight-heading::after { width: clamp(110px, 18vw, 210px); }
+}
+
+/* 近期亮點輪播箭頭：只微調粉色箭頭，讓符號視覺上置中於白色圓形。 */
+#highlightsCarousel .carousel-control-prev,
+#highlightsCarousel .carousel-control-next { display: flex; align-items: center; justify-content: center; }
+#highlightsCarousel .carousel-control-prev span,
+#highlightsCarousel .carousel-control-next span { position: relative; top: -3px; line-height: 1; }
