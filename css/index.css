@@ -41,15 +41,17 @@ a { color: inherit; }
 /* 關於我與近期亮點：控制人物肖像、個人簡介、標籤及輪播版面。 */
 .about-content { margin-top: 6px; min-height: 390px; }
 .portrait-wrap { position: relative; display: flex; width: min(100%, 330px); height: 350px; margin: 0 auto; align-items: end; justify-content: center; }
-.portrait-wrap::before { position: absolute; bottom: 34px; width: 245px; height: 245px; border: 2px solid var(--yellow); border-radius: 50%; background: #ffe0e8; content: ""; }
+.portrait-wrap::before { position: absolute; bottom: 34px; width: 245px; height: 245px; border-radius: 50%; background: url("../images/圓形.png") center / 150% no-repeat; content: ""; }
 .portrait-wrap img { position: relative; z-index: 1; max-width: 94%; max-height: 100%; object-fit: contain; object-position: bottom; }
 .portrait-label { position: absolute; z-index: 2; padding: 5px 13px; border: 1px solid rgba(255,255,255,.85); border-radius: 30px; background: var(--yellow); color: var(--blue); font-size: calc(.7rem + 5px); transform: rotate(-7deg); }
-.label-top { top: 28px; left: 37%; background: #ffc5de; }
+.label-top { top: 18px; left: 37%; background: #ffc5de; transform: rotate(6deg); }
 .label-left { top: 81px; left: 4%; }
 .label-right { top: 115px; right: 1%; background: #c7e2ff; transform: rotate(7deg); }
-.label-bottom { bottom: 64px; left: 0; background: #ffc5de; }
+.label-bottom { right: -1%; bottom: 110px; left: auto; background: #ffc5de; }
+.label-creative { bottom: 94px; left: -10px; background: #d7ccf4; transform: rotate(6deg); }
 .portrait-star { position: absolute; z-index: 2; color: #ffca47; font-size: 2rem; }
 .star-one { top: 20px; right: 22px; }.star-two { bottom: 55px; right: 4px; }
+.star-three { top: 176px; left: -2%; }
 .about-copy { padding: 8px 8px 20px 24px; }
 .name-title { margin: 0 0 12px; color: #ffbc63; font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 700; line-height: 1.2; }
 .name-title span { font-family: var(--font-round); }
