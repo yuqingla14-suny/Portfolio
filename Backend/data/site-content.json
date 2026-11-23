@@ -38,7 +38,8 @@
       "description": "記錄畢業歌曲拍攝現場與參與創作的團隊。",
       "images": [
         "images/封面/畢業歌照片2.JPG"
-      ]
+      ],
+      "videoUrl": ""
     },
     {
       "id": "gallery-sunini",
@@ -49,7 +50,8 @@
       "description": "以繽紛色彩與角色插畫描繪想像中的 Sunny，透過花朵、雲朵與明亮藍色背景營造童趣氛圍。",
       "images": [
         "images/平面創作/sunini作品.png"
-      ]
+      ],
+      "videoUrl": ""
     },
     {
       "id": "gallery-daily",
@@ -60,7 +62,8 @@
       "description": "從日常場景中收集值得停留的畫面，保存生活裡細微的觀察。",
       "images": [
         "images/封面/DSC01108.jpg"
-      ]
+      ],
+      "videoUrl": ""
     },
     {
       "id": "gallery-belongings",
@@ -83,7 +86,8 @@
       "description": "以經典藝術作品為靈感，重新描繪美術館裡的人物與雕塑，加入現代角色，呈現幽默的藝術互動。",
       "images": [
         "images/平面創作/藝術玷堂.png"
-      ]
+      ],
+      "videoUrl": ""
     },
     {
       "id": "gallery-daily-moment",
@@ -94,7 +98,8 @@
       "description": "以影像留住日常片刻，記錄生活中的人物與場景。",
       "images": [
         "images/封面/IMG_3193.JPG"
-      ]
+      ],
+      "videoUrl": ""
     },
     {
       "id": "gallery-grad",
@@ -105,7 +110,8 @@
       "description": "記錄畢業歌曲影像拍攝時的戶外場景與團隊工作。",
       "images": [
         "images/封面/畢業歌照片.JPG"
-      ]
+      ],
+      "videoUrl": ""
     },
     {
       "id": "gallery-documentary",
@@ -116,7 +122,8 @@
       "description": "記錄紀錄片作品獲獎時刻，保存創作歷程中的重要回憶。",
       "images": [
         "images/紀錄片照片.JPG"
-      ]
+      ],
+      "videoUrl": ""
     }
   ],
   "projects": [
@@ -129,7 +136,7 @@
         "性別議題",
         "舞蹈"
       ],
-      "year": "",
+      "year": "2026",
       "description": "透過舞蹈說出兩人會經歷的性別故事。以策展作為觀看與對話的入口，整理作品概念、現場呈現與觀眾感受。",
       "images": [
         "images/策展/跳舞.JPEG",
@@ -148,26 +155,10 @@
         "設計概念",
         "專題"
       ],
-      "year": "",
+      "year": "2025",
       "description": "從走讀與影像紀錄出發，認識小誌的編輯方式，並將一學期的探索整理成一本自己的作品。",
       "images": [
         "images/小誌發表.jpg"
-      ],
-      "visible": true
-    },
-    {
-      "id": "sunini",
-      "title": "Sunini 的想像世界",
-      "englishTitle": "Sunini",
-      "tags": [
-        "平面設計",
-        "角色創作",
-        "插畫"
-      ],
-      "year": "",
-      "description": "以角色與插畫構成的視覺創作，透過色彩、造型與畫面安排，呈現 Sunini 的想像日常。",
-      "images": [
-        "images/平面創作/sunini作品.png"
       ],
       "visible": true
     },
@@ -180,7 +171,7 @@
         "聲音",
         "影像"
       ],
-      "year": "",
+      "year": "2025",
       "description": "透過聲音與影像記錄地方故事，從日常觀察出發，整理對新埔場域與人們的認識。",
       "images": [
         "images/新埔廣播.JPG"
