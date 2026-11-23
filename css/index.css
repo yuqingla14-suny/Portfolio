@@ -508,15 +508,14 @@ a.portrait-label:hover { color: var(--blue); }
 body[data-content-page="article"] .site-header { position: sticky; top: 0; z-index: 1030; }
 body[data-content-page="article"] #managedArticle { max-width: 1160px; }
 .article-layout { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: clamp(28px, 5vw, 64px); align-items: start; }
-.article-main { min-width: 0; }
-.article-outline { position: sticky; top: 72px; padding: 16px 14px; border: 1px solid var(--pink-strong); border-radius: 16px; background: rgba(255, 244, 247, .76); }
+.article-main { min-width: 0; transform: translateX(30px); }
+.article-outline { position: sticky; top: 72px; transform: translateX(-30px); padding: 16px 14px; border: 1px solid var(--pink-strong); border-radius: 16px; background: rgba(255, 244, 247, .76); }
 .article-outline h2 { margin: 0 0 10px; color: var(--blue); font-size: .95rem; font-weight: 800; }
 .article-outline-list { display: grid; gap: 7px; }
 .article-outline-item { display: block; min-width: 0; padding: 9px 10px; border-radius: 10px; background: rgba(255, 255, 255, .68); color: var(--ink); text-decoration: none; }
 .article-outline-item:hover, .article-outline-item:focus-visible { background: var(--yellow); color: var(--ink); }
-.article-outline-item strong, .article-outline-item small { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; }
+.article-outline-item strong { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; }
 .article-outline-item strong { font-size: .78rem; line-height: 1.45; -webkit-line-clamp: 2; }
-.article-outline-item small { margin-top: 3px; color: #718bad; font-size: .68rem; line-height: 1.4; -webkit-line-clamp: 2; }
 .article-page:not(.project-detail) h1, .article-content-section h2 { scroll-margin-top: 72px; }
 .article-page:not(.project-detail) h1 { font-size: calc(var(--article-title-size) - 10px); line-height: 1.4; }
 .article-page:not(.project-detail) .article-subtitle { margin: 4px 0 30px; color: #ed6dad; font-size: min(20px, calc(var(--article-title-size) - 17px)); line-height: 1.5; }
@@ -533,6 +532,7 @@ body[data-content-page="article"] #managedArticle { max-width: 1160px; }
 }
 @media (max-width: 767.98px) {
   .article-layout { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .article-main, .article-outline { transform: none; }
   .article-outline { position: static; grid-row: 1; }
   .article-outline-list { display: flex; overflow-x: auto; padding-bottom: 4px; }
   .article-outline-item { flex: 0 0 min(68vw, 220px); }

@@ -151,8 +151,7 @@
         link.className = 'article-outline-item';
         link.href = `#${entry.id}`;
         const title = document.createElement('strong'); title.textContent = entry.title;
-        const subtitleText = document.createElement('small'); subtitleText.textContent = entry.subtitle;
-        link.append(title, subtitleText);
+        link.append(title);
         return link;
       }));
     }
