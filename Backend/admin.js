@@ -183,13 +183,22 @@ function showGitHubAuth(errorMessage = '') {
   authForm.hidden = false;
 }
 async function showDashboard() {
+  let loadedContent;
+  if (githubMode) {
+    const file = await githubReadFile(CONTENT_PATH);
+    try { loadedContent = JSON.parse(file.text); }
+    catch { throw new Error('GitHub 上的網站資料格式錯誤，請先修復 Backend/data/site-content.json。'); }
+  } else {
+    loadedContent = await api('/api/content');
+  }
+  if (!loadedContent?.about || !Array.isArray(loadedContent.gallery) || !Array.isArray(loadedContent.projects) || !Array.isArray(loadedContent.articles)) {
+    throw new Error('網站資料缺少必要欄位，請確認 Backend/data/site-content.json。');
+  }
+  content = loadedContent;
+  render();
   authPanel.hidden = true;
   dashboard.hidden = false;
-  content = githubMode
-    ? JSON.parse((await githubReadFile(CONTENT_PATH)).text)
-    : await api('/api/content');
   $('#saveButton').textContent = githubMode ? '提交更新到 GitHub' : '儲存並更新網站';
-  render();
 }
 function showAuth(configured) {
   setupMode = !configured;

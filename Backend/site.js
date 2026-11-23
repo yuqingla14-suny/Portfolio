@@ -81,10 +81,12 @@
   }
   function renderProjectPage(content) {
     if (document.body.dataset.contentPage !== 'project') return;
-    const item = content.projects.find((project) => project.id === new URLSearchParams(location.search).get('id'));
+    const projectId = new URLSearchParams(location.search).get('id') || document.body.dataset.projectId;
+    const item = content.projects.find((project) => project.id === projectId);
     const main = document.querySelector('#managedProject');
     if (!main) return;
     if (!item) { main.innerHTML = '<article class="container"><h1>找不到這個專案</h1><a href="../index.html#projects">返回專案作品</a></article>'; return; }
+    document.title = `${item.title}｜王鈺晴 Sunny`;
     const images = item.images || [];
     const carouselId = 'managedProjectCarousel';
     main.innerHTML = `<article class="container"><a class="project-back" href="../index.html#projects">← 專案作品</a>${images.length ? `<div id="${carouselId}" class="carousel slide project-carousel" aria-label="${esc(item.title)}作品照片"><div class="carousel-inner">${images.map((image, index) => `<div class="carousel-item ${index === 0 ? 'active' : ''}"><img src="${esc(asset(image))}" alt="${esc(item.title)}作品照片 ${index + 1}"></div>`).join('')}</div>${images.length > 1 ? `<button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev" aria-label="上一張作品"><span class="carousel-control-prev-icon" aria-hidden="true"></span></button><button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next" aria-label="下一張作品"><span class="carousel-control-next-icon" aria-hidden="true"></span></button>` : ''}</div>` : ''}<div class="project-detail-information"><aside class="project-detail-meta"><span class="section-tag">Selected Project</span><h1>${esc(item.title)}</h1><p class="project-en">${esc(item.englishTitle)}</p><div class="project-detail-tags">${(item.tags || []).map((tag) => `<span>${esc(tag)}</span>`).join('')}</div><p class="project-detail-year"><strong>年份</strong><span>${esc(item.year || '未標註')}</span></p></aside><section class="project-detail-copy"><h2>作品介紹</h2><p>${esc(item.description)}</p></section></div><a class="project-link" href="../index.html#projects">返回專案作品 <span aria-hidden="true">→</span></a></article>`;

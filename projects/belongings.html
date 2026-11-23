@@ -13,11 +13,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../css/index.css" rel="stylesheet">
 </head>
-<body>
+<body data-content-page="project" data-project-id="belongings">
   <!-- 頁首導覽：返回作品集首頁的專案作品區。 -->
   <header class="site-header sticky-top"><nav class="navbar container" aria-label="主要導覽"><a class="navbar-brand" href="../index.html#projects">王鈺晴 <span>· Portfolio</span></a><a class="nav-link" href="../index.html#projects">← 返回專案作品</a></nav></header>
   <!-- 案例內容：上方呈現作品輪播，下方分欄介紹作品資訊與創作內容。 -->
-  <main class="article-page project-detail"><article class="container">
+  <main class="article-page project-detail" id="managedProject"><article class="container">
     <a class="project-back" href="../index.html#projects">← 專案作品</a>
     <!-- 作品輪播：使用 Bootstrap 輪播呈現此專案的相關照片。 -->
     <div id="carousel-belongings" class="carousel slide project-carousel" aria-label="舞蹈策展作品照片">
@@ -66,5 +66,6 @@
   <footer class="article-footer">© 2026 sunny的作品集</footer>
   <!-- Bootstrap 元件程式：啟用作品照片輪播的上一張與下一張按鈕。 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../Backend/site.js"></script>
 </body>
 </html>
