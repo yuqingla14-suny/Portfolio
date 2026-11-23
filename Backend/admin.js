@@ -72,6 +72,10 @@ function render() {
   $('#aboutLabels').value = lines(content.about.labels);
   $('#aboutHashtags').value = lines(content.about.hashtags);
   $('#aboutBio').value = content.about.bio || '';
+  const aboutImages = content.about.highlights || [];
+  const highlightEditor = $('#aboutHighlightImages');
+  highlightEditor.dataset.images = JSON.stringify(aboutImages);
+  highlightEditor.querySelector('.image-list').outerHTML = imageList(aboutImages);
   for (const kind of ['gallery', 'projects', 'articles']) {
     const holder = $(`#${kind === 'gallery' ? 'galleryCards' : kind === 'projects' ? 'projectCards' : 'articleCards'}`);
     holder.innerHTML = content[kind].map((item, index) => cardMarkup(kind, item, index)).join('') || '<p class="muted">目前沒有內容，按右上方按鈕新增。</p>';
@@ -84,6 +88,7 @@ function collect() {
   next.about.labels = $('#aboutLabels').value.split('\n').map((value) => value.trim()).filter(Boolean);
   next.about.hashtags = $('#aboutHashtags').value.split('\n').map((value) => value.trim().replace(/^#\s*/, '')).filter(Boolean);
   next.about.bio = $('#aboutBio').value.trim();
+  next.about.highlights = JSON.parse($('#aboutHighlightImages').dataset.images || '[]');
   for (const kind of ['gallery', 'projects', 'articles']) {
     next[kind] = $$(`.editor-card[data-kind="${kind}"]`).map((card) => {
       const item = { id: card.dataset.id };
@@ -320,9 +325,19 @@ $$('.card-list').forEach((holder) => holder.addEventListener('click', (event) =>
   }
 }));
 
+$('#aboutHighlightImages').addEventListener('click', (event) => {
+  const removeImage = event.target.closest('[data-remove-image]');
+  if (!removeImage) return;
+  const editor = $('#aboutHighlightImages');
+  const images = JSON.parse(editor.dataset.images || '[]');
+  images.splice(Number(removeImage.dataset.removeImage), 1);
+  editor.dataset.images = JSON.stringify(images);
+  editor.querySelector('.image-list').outerHTML = imageList(images);
+});
+
 $$('[data-upload]').forEach((input) => input.addEventListener('change', async () => {
   if (!input.files.length) return;
-  const card = input.closest('.editor-card');
+  const card = input.closest('.editor-card') || input.closest('[data-image-owner]');
   const form = new FormData();
   [...input.files].forEach((file) => form.append('images', file));
   input.disabled = true;

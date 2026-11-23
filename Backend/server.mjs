@@ -82,7 +82,8 @@ function safeContent(input) {
   return {
     about: {
       name: cleanText(input.about?.name, 120), labels: list(input.about?.labels, 12).map((v) => cleanText(v, 50)),
-      hashtags: list(input.about?.hashtags, 12).map((v) => cleanText(v, 180)), bio: cleanText(input.about?.bio, 5000), announcement: cleanText(input.about?.announcement, 500)
+      hashtags: list(input.about?.hashtags, 12).map((v) => cleanText(v, 180)), bio: cleanText(input.about?.bio, 5000), announcement: cleanText(input.about?.announcement, 500),
+      highlights: safeImages(input.about?.highlights)
     },
     gallery: list(input.gallery, 200).map((item) => ({ id: id(item.id), type: category(item.type), title: cleanText(item.title, 200), englishTitle: cleanText(item.englishTitle, 200), medium: cleanText(item.medium, 300), description: cleanText(item.description, 5000), images: safeImages(item.images), videoUrl: cleanText(item.videoUrl, 500) })),
     projects: list(input.projects, 100).map((item) => ({ id: id(item.id), title: cleanText(item.title, 200), englishTitle: cleanText(item.englishTitle, 200), tags: list(item.tags, 20).map((v) => cleanText(v, 80)), year: cleanText(item.year, 30), description: cleanText(item.description, 5000), images: safeImages(item.images), visible: item.visible !== false })),

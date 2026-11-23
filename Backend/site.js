@@ -42,6 +42,21 @@
     if (bio) textWithBreaks(bio, data.bio);
     const announcement = document.querySelector('.highlight-announcement p');
     if (announcement && data.announcement) announcement.textContent = data.announcement;
+    const carousel = document.querySelector('#highlightsCarousel');
+    const carouselInner = carousel?.querySelector('.carousel-inner');
+    if (carouselInner && Array.isArray(data.highlights)) {
+      carouselInner.replaceChildren(...data.highlights.map((src, index) => {
+        const item = document.createElement('div');
+        item.className = `carousel-item${index === 0 ? ' active' : ''}`;
+        const image = document.createElement('img');
+        image.src = asset(src);
+        image.alt = `近期亮點 ${index + 1}`;
+        item.append(image);
+        return item;
+      }));
+      carousel.hidden = data.highlights.length === 0;
+      carousel.querySelectorAll('.carousel-control-prev, .carousel-control-next').forEach((control) => { control.hidden = data.highlights.length < 2; });
+    }
   }
   function renderGallery(items) {
     const grid = document.querySelector('#galleryGrid');
@@ -73,14 +88,16 @@
     const articlePages = { bamboo: 'article-bamboo.html', museum: 'article-museum.html', pomelo: 'article-pomelo.html' };
     list.innerHTML = items.map((item) => `<a class="journal-item" href="${articlePages[item.id] || 'article.html'}"><time>${esc(item.date)}</time><span class="journal-copy"><strong>${esc(item.title)}</strong><small>${esc(item.summary || item.subtitle)}</small></span><span class="journal-category">${esc(item.category)}</span><span class="journal-arrow" aria-hidden="true">→</span></a>`).join('');
     const feature = document.querySelector('.journal-feature');
+    if (feature) feature.hidden = items.length === 0;
     if (feature && items[0]) {
       const images = items[0].images || (items[0].image ? [items[0].image] : []);
       const slides = feature.querySelector('.journal-feature-slides');
       const dots = feature.querySelector('.journal-feature-dots');
-      if (slides && images.length) {
+      if (slides) {
+        feature.hidden = images.length === 0;
         slides.replaceChildren(...images.map((src, index) => {
           const image = document.createElement('img');
-          image.src = asset(src); image.alt = `採訪花絮 ${index + 1}`; image.loading = index ? 'lazy' : 'eager';
+          image.src = asset(src); image.alt = `${items[0].title} 採訪花絮 ${index + 1}`; image.loading = index ? 'lazy' : 'eager';
           image.hidden = index !== 0;
           return image;
         }));

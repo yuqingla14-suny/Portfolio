@@ -47,11 +47,16 @@
           <label class="wide">人物標籤（每行一個）<textarea id="aboutLabels" rows="3"></textarea></label>
           <label class="wide">個人標籤文字（每行一個，不用輸入 #）<textarea id="aboutHashtags" rows="3"></textarea></label>
           <label class="wide">關於我內文<textarea id="aboutBio" rows="7"></textarea></label>
+          <div class="wide" id="aboutHighlightImages" data-images="[]" data-image-owner="about">
+            <strong class="image-editor-title">近期亮點輪播圖</strong>
+            <p class="muted">這裡的圖片會同步更新首頁「近期亮點」輪播。</p>
+            <div class="image-tools"><label class="button secondary upload-button">上傳近期亮點圖片（可多選）<input type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple hidden data-upload></label><ul class="image-list"></ul></div>
+          </div>
         </div>
       </section>
       <section class="panel editor-section" id="galleryEditor"><div class="section-heading"><div><p class="eyebrow">FEATURED GALLERY</p><h2>精選作品</h2><p class="muted">可選影片、照片、平面設計或繪畫；每件作品可上傳多張圖片。</p></div><button class="button secondary" data-add="gallery" type="button">＋ 新增作品</button></div><div class="card-list" id="galleryCards"></div></section>
       <section class="panel editor-section" id="projectEditor"><div class="section-heading"><div><p class="eyebrow">SELECTED PROJECTS</p><h2>專案作品</h2><p class="muted">目前網站上的專案都已列在下方；新增多張圖片會在案例頁以輪播呈現。</p></div><button class="button secondary" data-add="projects" type="button">＋ 新增專案</button></div><div class="card-list" id="projectCards"></div></section>
-      <section class="panel editor-section" id="articleEditor"><div class="section-heading"><div><p class="eyebrow">JOURNAL</p><h2>文章上傳</h2><p class="muted">填寫標題、內文與圖片，儲存後會出現在網站文章列表。</p></div><button class="button secondary" data-add="articles" type="button">＋ 新增文章</button></div><div class="card-list" id="articleCards"></div></section>
+      <section class="panel editor-section" id="articleEditor"><div class="section-heading"><div><p class="eyebrow">JOURNAL</p><h2>文章上傳</h2><p class="muted">填寫標題、內文與圖片，儲存後會出現在網站文章列表。第一篇文章的圖片也會同步更新首頁「最新文章」輪播。</p></div><button class="button secondary" data-add="articles" type="button">＋ 新增文章</button></div><div class="card-list" id="articleCards"></div></section>
       <footer class="admin-footer">© 2026 sunny的作品集 · 內容儲存在此網站專案資料夾中</footer>
     </div>
   </main>
