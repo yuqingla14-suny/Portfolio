@@ -495,6 +495,8 @@ a.portrait-label:hover { color: var(--blue); }
 
 /* 文章頁排版：主、副標題各縮小 10px，圖片裁切填滿圖片框。 */
 .article-page:not(.project-detail) { --article-title-size: clamp(1.7rem, 3.5vw, 2.5rem); }
+.article-page:not(.project-detail) .article-body { margin-left: 0; margin-right: 0; }
+body[data-content-page="article"] .site-header { position: sticky; top: 0; z-index: 1030; }
 .article-page:not(.project-detail) h1 { font-size: calc(var(--article-title-size) - 10px); line-height: 1.4; }
 .article-page:not(.project-detail) .article-subtitle { margin: 4px 0 30px; color: #ed6dad; font-size: min(20px, calc(var(--article-title-size) - 17px)); line-height: 1.5; }
 .article-page:not(.project-detail) .article-subtitle[hidden] { display: none !important; }
