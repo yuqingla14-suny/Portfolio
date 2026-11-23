@@ -100,19 +100,38 @@
     article.querySelector('.section-tag').textContent = `Journal · ${item.category}`;
     article.querySelector('.article-date').textContent = item.date;
     article.querySelector('h1').textContent = item.title;
+    article.querySelector('h1').id = 'article-start';
     const subtitle = article.querySelector('.article-subtitle');
     subtitle.textContent = item.subtitle || '';
     subtitle.hidden = !item.subtitle;
     const body = article.querySelector('.article-body');
     body.replaceChildren();
     const sections = item.sections || (item.content ? [{ heading: '', body: item.content }] : []);
-    sections.filter((section) => section.heading || section.body).forEach((section) => {
+    sections.filter((section) => section.heading || section.body).forEach((section, index) => {
       const sectionElement = document.createElement('section');
       sectionElement.className = 'article-content-section';
-      if (section.heading) { const heading = document.createElement('h2'); heading.textContent = section.heading; sectionElement.append(heading); }
+      if (section.heading) { const heading = document.createElement('h2'); heading.id = `article-section-${index + 1}`; heading.textContent = section.heading; sectionElement.append(heading); }
       String(section.body || '').split('\n').filter(Boolean).forEach((paragraph) => { const p = document.createElement('p'); p.textContent = paragraph; sectionElement.append(p); });
       body.append(sectionElement);
     });
+    const outline = article.querySelector('.article-outline-list');
+    if (outline) {
+      const entries = [{ id: 'article-start', title: item.title, subtitle: item.subtitle || '' }];
+      body.querySelectorAll('.article-content-section').forEach((section) => {
+        const heading = section.querySelector('h2');
+        if (!heading) return;
+        entries.push({ id: heading.id, title: heading.textContent, subtitle: section.querySelector('p')?.textContent || '' });
+      });
+      outline.replaceChildren(...entries.map((entry) => {
+        const link = document.createElement('a');
+        link.className = 'article-outline-item';
+        link.href = `#${entry.id}`;
+        const title = document.createElement('strong'); title.textContent = entry.title;
+        const subtitleText = document.createElement('small'); subtitleText.textContent = entry.subtitle;
+        link.append(title, subtitleText);
+        return link;
+      }));
+    }
     const imageList = item.images || (item.image ? [item.image] : []);
     const imageGrid = article.querySelector('.article-images');
     imageGrid.replaceChildren();
