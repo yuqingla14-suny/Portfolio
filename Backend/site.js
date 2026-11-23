@@ -74,9 +74,33 @@
     list.innerHTML = items.map((item) => `<a class="journal-item" href="${articlePages[item.id] || 'article.html'}"><time>${esc(item.date)}</time><span class="journal-copy"><strong>${esc(item.title)}</strong><small>${esc(item.summary || item.subtitle)}</small></span><span class="journal-category">${esc(item.category)}</span><span class="journal-arrow" aria-hidden="true">→</span></a>`).join('');
     const feature = document.querySelector('.journal-feature');
     if (feature && items[0]) {
-      feature.href = articlePages[items[0].id] || 'article.html';
-      const image = feature.querySelector('img'); if (image) { image.src = asset(items[0].images?.[0] || items[0].image); image.alt = `${items[0].title}封面`; }
-      const strong = feature.querySelector('strong'); if (strong) strong.textContent = items[0].title;
+      const images = items[0].images || (items[0].image ? [items[0].image] : []);
+      const slides = feature.querySelector('.journal-feature-slides');
+      const dots = feature.querySelector('.journal-feature-dots');
+      if (slides && images.length) {
+        slides.replaceChildren(...images.map((src, index) => {
+          const image = document.createElement('img');
+          image.src = asset(src); image.alt = `採訪花絮 ${index + 1}`; image.loading = index ? 'lazy' : 'eager';
+          image.hidden = index !== 0;
+          return image;
+        }));
+        if (dots) dots.replaceChildren(...images.map((_, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button'; dot.className = 'journal-feature-dot'; dot.setAttribute('aria-label', `顯示第 ${index + 1} 張採訪花絮`);
+          dot.setAttribute('aria-current', String(index === 0));
+          dot.addEventListener('click', () => showSlide(index));
+          return dot;
+        }));
+        let activeIndex = 0;
+        const showSlide = (index) => {
+          activeIndex = (index + images.length) % images.length;
+          [...slides.children].forEach((image, i) => { image.hidden = i !== activeIndex; });
+          [...(dots?.children || [])].forEach((dot, i) => dot.setAttribute('aria-current', String(i === activeIndex)));
+        };
+        feature.querySelector('.previous')?.addEventListener('click', () => showSlide(activeIndex - 1));
+        feature.querySelector('.next')?.addEventListener('click', () => showSlide(activeIndex + 1));
+        feature.querySelectorAll('.journal-feature-control, .journal-feature-dots').forEach((control) => { control.hidden = images.length < 2; });
+      }
     }
   }
   function renderProjectPage(content) {
