@@ -86,7 +86,12 @@ function safeContent(input) {
     },
     gallery: list(input.gallery, 200).map((item) => ({ id: id(item.id), type: category(item.type), title: cleanText(item.title, 200), englishTitle: cleanText(item.englishTitle, 200), medium: cleanText(item.medium, 300), description: cleanText(item.description, 5000), images: safeImages(item.images), videoUrl: cleanText(item.videoUrl, 500) })),
     projects: list(input.projects, 100).map((item) => ({ id: id(item.id), title: cleanText(item.title, 200), englishTitle: cleanText(item.englishTitle, 200), tags: list(item.tags, 20).map((v) => cleanText(v, 80)), year: cleanText(item.year, 30), description: cleanText(item.description, 5000), images: safeImages(item.images), visible: item.visible !== false })),
-    articles: list(input.articles, 200).map((item) => ({ id: id(item.id), title: cleanText(item.title, 250), subtitle: cleanText(item.subtitle, 500), date: cleanText(item.date, 30), category: cleanText(item.category, 100), summary: cleanText(item.summary, 500), content: cleanText(item.content, 20000), image: safeImages([item.image])[0] || '' }))
+    articles: list(input.articles, 200).map((item) => ({
+      id: id(item.id), title: cleanText(item.title, 250), subtitle: cleanText(item.subtitle, 500), date: cleanText(item.date, 30),
+      category: cleanText(item.category, 100), summary: cleanText(item.summary, 500),
+      sections: list(item.sections, 100).map((section) => ({ heading: cleanText(section.heading, 250), body: cleanText(section.body, 20000) })),
+      images: safeImages(item.images?.length ? item.images : [item.image])
+    }))
   };
 }
 function parseUpload(req, body) {

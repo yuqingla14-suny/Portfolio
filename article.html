@@ -13,7 +13,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/index.css" rel="stylesheet">
 </head>
-<body data-content-page="article">
+<body data-content-page="article" data-article-id="central-beauty">
   <!-- 頁首導覽：回到作品集首頁或最新文章列表。 -->
   <header class="site-header">
     <nav class="navbar container" aria-label="主要導覽">
@@ -21,16 +21,18 @@
       <a class="nav-link" href="index.html#journal">← 回到文章列表</a>
     </nav>
   </header>
-  <!-- 文章內容：顯示文章分類、日期、標題、封面、內文與返回連結。 -->
+  <!-- 文章內容：依序顯示分類、日期、標題、副標題、段落與文末圖片。 -->
   <main class="article-page" data-content-page="article">
     <article class="container" id="managedArticle">
       <span class="section-tag">Journal · 專題報導</span>
       <p class="article-date">2026.08</p>
       <h1>中央商場的美麗製造所：<br class="d-none d-md-block">玉蘭美容工作室</h1>
-      <p class="section-subtitle">走進傳統美容工作室，記錄手藝與地方日常。</p>
-      <img class="article-cover" src="images/小誌發表.jpg" alt="文章影像紀錄">
+      <p class="section-subtitle article-subtitle">走進傳統美容工作室，記錄手藝與地方日常。</p>
       <div class="article-body">
         <p>介紹傳統美容技藝。</p>
+      </div>
+      <div class="article-images" aria-label="文章圖片">
+        <img class="article-cover" src="images/小誌發表.jpg" alt="文章影像紀錄">
       </div>
       <a class="project-link" href="index.html#journal">← 回到最新文章</a>
     </article>

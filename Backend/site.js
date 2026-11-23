@@ -70,11 +70,12 @@
   function renderArticles(items) {
     const list = document.querySelector('.journal-list');
     if (!list || !Array.isArray(items)) return;
-    list.innerHTML = items.map((item) => `<a class="journal-item" href="article.html?id=${encodeURIComponent(item.id)}"><time>${esc(item.date)}</time><span class="journal-copy"><strong>${esc(item.title)}</strong><small>${esc(item.summary || item.subtitle)}</small></span><span class="journal-category">${esc(item.category)}</span><span class="journal-arrow" aria-hidden="true">→</span></a>`).join('');
+    const articlePages = { bamboo: 'article-bamboo.html', museum: 'article-museum.html', pomelo: 'article-pomelo.html' };
+    list.innerHTML = items.map((item) => `<a class="journal-item" href="${articlePages[item.id] || 'article.html'}"><time>${esc(item.date)}</time><span class="journal-copy"><strong>${esc(item.title)}</strong><small>${esc(item.summary || item.subtitle)}</small></span><span class="journal-category">${esc(item.category)}</span><span class="journal-arrow" aria-hidden="true">→</span></a>`).join('');
     const feature = document.querySelector('.journal-feature');
     if (feature && items[0]) {
-      feature.href = `article.html?id=${encodeURIComponent(items[0].id)}`;
-      const image = feature.querySelector('img'); if (image) { image.src = asset(items[0].image); image.alt = `${items[0].title}封面`; }
+      feature.href = articlePages[items[0].id] || 'article.html';
+      const image = feature.querySelector('img'); if (image) { image.src = asset(items[0].images?.[0] || items[0].image); image.alt = `${items[0].title}封面`; }
       const strong = feature.querySelector('strong'); if (strong) strong.textContent = items[0].title;
     }
   }
@@ -90,17 +91,33 @@
   }
   function renderArticlePage(content) {
     if (document.body.dataset.contentPage !== 'article') return;
-    const item = content.articles.find((article) => article.id === new URLSearchParams(location.search).get('id')) || content.articles[0];
+    const articleId = document.body.dataset.articleId || new URLSearchParams(location.search).get('id');
+    const item = content.articles.find((article) => article.id === articleId) || content.articles[0];
     const article = document.querySelector('#managedArticle');
     if (!article || !item) return;
     article.querySelector('.section-tag').textContent = `Journal · ${item.category}`;
     article.querySelector('.article-date').textContent = item.date;
     article.querySelector('h1').textContent = item.title;
-    article.querySelector('.section-subtitle').textContent = item.subtitle;
-    const image = article.querySelector('.article-cover'); image.src = asset(item.image); image.alt = `${item.title}文章圖片`;
+    const subtitle = article.querySelector('.article-subtitle');
+    subtitle.textContent = item.subtitle || '';
+    subtitle.hidden = !item.subtitle;
     const body = article.querySelector('.article-body');
     body.replaceChildren();
-    String(item.content || '').split('\n').filter(Boolean).forEach((paragraph) => { const p = document.createElement('p'); p.textContent = paragraph; body.append(p); });
+    const sections = item.sections || (item.content ? [{ heading: '', body: item.content }] : []);
+    sections.filter((section) => section.heading || section.body).forEach((section) => {
+      const sectionElement = document.createElement('section');
+      sectionElement.className = 'article-content-section';
+      if (section.heading) { const heading = document.createElement('h2'); heading.textContent = section.heading; sectionElement.append(heading); }
+      String(section.body || '').split('\n').filter(Boolean).forEach((paragraph) => { const p = document.createElement('p'); p.textContent = paragraph; sectionElement.append(p); });
+      body.append(sectionElement);
+    });
+    const imageList = item.images || (item.image ? [item.image] : []);
+    const imageGrid = article.querySelector('.article-images');
+    imageGrid.replaceChildren();
+    imageList.forEach((src, index) => { const image = document.createElement('img'); image.className = 'article-cover'; image.src = asset(src); image.alt = `${item.title}文章圖片 ${index + 1}`; image.loading = 'lazy'; imageGrid.append(image); });
+    imageGrid.hidden = imageList.length === 0;
+    imageGrid.classList.toggle('single-image', imageList.length === 1);
+    document.title = `${item.title}｜王鈺晴 Sunny`;
   }
   loadContent().then((content) => {
     if (!content) return;

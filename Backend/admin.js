@@ -6,6 +6,12 @@ const authForm = $('#authForm');
 const statusMessage = $('#statusMessage');
 let content;
 let setupMode = false;
+let githubMode = false;
+const REPOSITORY_OWNER = 'yuqingla14-suny';
+const REPOSITORY_NAME = 'Portfolio';
+const REPOSITORY_BRANCH = 'main';
+const CONTENT_PATH = 'Backend/data/site-content.json';
+const GITHUB_TOKEN_KEY = 'sunny-portfolio-github-token';
 
 function escapeHtml(value = '') {
   return String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
@@ -25,10 +31,17 @@ function field(label, name, value, options = {}) {
 function imageList(images = []) {
   return `<ul class="image-list">${images.map((src, index) => `<li class="image-item"><img src="../${escapeHtml(src)}" alt="已上傳的作品圖片"><button type="button" data-remove-image="${index}" aria-label="移除圖片">×</button></li>`).join('')}</ul>`;
 }
+function articleSectionMarkup(section = {}, index = 0) {
+  return `<div class="article-section-editor" data-article-section>
+    <div class="article-section-editor-heading"><strong>文章段落 ${index + 1}</strong><button class="remove-button" type="button" data-remove-section>移除此段</button></div>
+    ${field('小標題（可留空）','sectionHeading',section.heading || '')}
+    ${field('內文','sectionBody',section.body || '',{multiline:true,wide:true,rows:5})}
+  </div>`;
+}
 function cardMarkup(kind, item, index) {
   const names = { gallery: '精選作品', projects: '專案作品', articles: '文章' };
-  const images = kind === 'articles' ? (item.image ? [item.image] : []) : (item.images || []);
-  const uploadText = kind === 'articles' ? '上傳文章圖片' : '上傳圖片（可多選）';
+  const images = kind === 'articles' ? (item.images || (item.image ? [item.image] : [])) : (item.images || []);
+  const uploadText = kind === 'articles' ? '上傳文章圖片（可多選）' : '上傳圖片（可多選）';
   let fields = '';
   if (kind === 'gallery') {
     fields = field('作品中文標題','title',item.title) + field('作品英文標題','englishTitle',item.englishTitle)
@@ -44,13 +57,13 @@ function cardMarkup(kind, item, index) {
     fields = field('文章標題','title',item.title) + field('文章副標題','subtitle',item.subtitle)
       + field('日期','date',item.date) + field('分類','category',item.category)
       + field('列表摘要','summary',item.summary,{wide:true})
-      + field('文章內文','content',item.content,{multiline:true,wide:true,rows:8});
+      + `<div class="article-sections wide"><div class="article-sections-heading"><strong>文章段落</strong><button class="button light" type="button" data-add-section>＋ 新增小標題與內文</button></div><div class="article-sections-list">${(item.sections || (item.content ? [{ heading: '', body: item.content }] : [{ heading: '', body: '' }])).map((section, sectionIndex) => articleSectionMarkup(section, sectionIndex)).join('')}</div></div>`;
   }
   const heading = item.title || `${names[kind]} ${index + 1}`;
   return `<article class="editor-card" data-kind="${kind}" data-id="${escapeHtml(item.id)}" data-images="${escapeHtml(JSON.stringify(images))}">
     <div class="card-top"><h3>${escapeHtml(heading)}</h3><button class="remove-button" type="button" data-remove-card>刪除此${names[kind]}</button></div>
     <div class="card-fields">${fields}</div>
-    <div class="image-tools"><label class="button secondary upload-button">${uploadText}<input type="file" accept="image/png,image/jpeg,image/webp,image/gif" ${kind === 'articles' ? '' : 'multiple'} hidden data-upload></label>${imageList(images)}</div>
+    <div class="image-tools"><label class="button secondary upload-button">${uploadText}<input type="file" accept="image/png,image/jpeg,image/webp,image/gif" multiple hidden data-upload></label>${imageList(images)}</div>
   </article>`;
 }
 function render() {
@@ -74,12 +87,19 @@ function collect() {
   for (const kind of ['gallery', 'projects', 'articles']) {
     next[kind] = $$(`.editor-card[data-kind="${kind}"]`).map((card) => {
       const item = { id: card.dataset.id };
-      const values = Object.fromEntries($$('input[name],textarea[name],select[name]', card).map((node) => [node.name, node.type === 'checkbox' ? node.checked : node.value.trim()]));
+      const formControls = $$('input[name],textarea[name],select[name]', card).filter((node) => !node.closest('[data-article-section]'));
+      const values = Object.fromEntries(formControls.map((node) => [node.name, node.type === 'checkbox' ? node.checked : node.value.trim()]));
       Object.assign(item, values);
       const images = JSON.parse(card.dataset.images || '[]');
       if (kind === 'gallery') { item.images = images; }
       if (kind === 'projects') { item.images = images; item.tags = (values.tags || '').split('\n').map((v) => v.trim()).filter(Boolean); }
-      if (kind === 'articles') { item.image = images[0] || ''; }
+      if (kind === 'articles') {
+        item.images = images;
+        item.sections = $$('[data-article-section]', card).map((section) => ({
+          heading: $('[name="sectionHeading"]', section).value.trim(),
+          body: $('[name="sectionBody"]', section).value.trim()
+        }));
+      }
       return item;
     });
   }
@@ -96,26 +116,108 @@ async function api(path, options = {}) {
   if (!response.ok) throw new Error(result.error || '連線失敗，請稍後再試。');
   return result;
 }
+function githubHeaders(token = sessionStorage.getItem(GITHUB_TOKEN_KEY)) {
+  return {
+    Accept: 'application/vnd.github+json',
+    Authorization: `Bearer ${token}`,
+    'X-GitHub-Api-Version': '2022-11-28',
+    'Content-Type': 'application/json'
+  };
+}
+function githubFileUrl(filePath) {
+  const encodedPath = filePath.split('/').map(encodeURIComponent).join('/');
+  return `https://api.github.com/repos/${REPOSITORY_OWNER}/${REPOSITORY_NAME}/contents/${encodedPath}`;
+}
+async function githubRequest(url, options = {}) {
+  const response = await fetch(url, { ...options, headers: { ...githubHeaders(), ...options.headers } });
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    if (response.status === 401 || response.status === 403) throw new Error('GitHub 權杖無效或沒有此儲存庫的 Contents 讀寫權限。');
+    if (response.status === 404) throw new Error('找不到 GitHub 檔案或儲存庫，請確認儲存庫名稱與 main 分支。');
+    throw new Error(result.message || `GitHub 回應錯誤（${response.status}）。`);
+  }
+  return result;
+}
+async function githubReadFile(filePath) {
+  const result = await githubRequest(`${githubFileUrl(filePath)}?ref=${encodeURIComponent(REPOSITORY_BRANCH)}`);
+  const binary = atob(result.content.replace(/\s/g, ''));
+  const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+  return { sha: result.sha, text: new TextDecoder().decode(bytes) };
+}
+function base64FromBytes(bytes) {
+  let binary = '';
+  const chunkSize = 0x8000;
+  for (let offset = 0; offset < bytes.length; offset += chunkSize) {
+    binary += String.fromCharCode(...bytes.subarray(offset, offset + chunkSize));
+  }
+  return btoa(binary);
+}
+async function githubWriteFile(filePath, contentBase64, message) {
+  let sha;
+  try { sha = (await githubReadFile(filePath)).sha; }
+  catch (error) { if (!error.message.startsWith('找不到 GitHub 檔案')) throw error; }
+  const payload = { message, content: contentBase64, branch: REPOSITORY_BRANCH };
+  if (sha) payload.sha = sha;
+  return githubRequest(githubFileUrl(filePath), { method: 'PUT', body: JSON.stringify(payload) });
+}
+function showGitHubAuth(errorMessage = '') {
+  githubMode = true;
+  setupMode = false;
+  authPanel.hidden = false;
+  dashboard.hidden = true;
+  $('#authTitle').textContent = '連結 GitHub 管理後台';
+  $('#authHelp').textContent = `後台將更新 ${REPOSITORY_OWNER}/${REPOSITORY_NAME} 的 main 分支。請輸入只授權此儲存庫 Contents 讀寫權限的 Fine-grained personal access token。`;
+  $('#authSecurityNote').innerHTML = '權杖只保留在目前瀏覽器分頁，登出或關閉分頁後即清除。<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">建立 Fine-grained token</a>';
+  $('#authSubmit').textContent = '登入並載入網站內容';
+  $('#confirmPasswordRow').hidden = true;
+  const usernameLabel = authForm.elements.username.closest('label');
+  usernameLabel.childNodes[0].textContent = 'GitHub 帳號';
+  authForm.elements.username.value = REPOSITORY_OWNER;
+  authForm.elements.username.readOnly = true;
+  const tokenLabel = authForm.elements.password.closest('label');
+  tokenLabel.childNodes[0].textContent = 'GitHub 權杖';
+  authForm.elements.password.value = '';
+  authForm.elements.password.placeholder = 'github_pat_…';
+  authForm.elements.password.minLength = 20;
+  $('#authError').textContent = errorMessage;
+  authForm.hidden = false;
+}
 async function showDashboard() {
   authPanel.hidden = true;
   dashboard.hidden = false;
-  content = await api('/api/content');
+  content = githubMode
+    ? JSON.parse((await githubReadFile(CONTENT_PATH)).text)
+    : await api('/api/content');
+  $('#saveButton').textContent = githubMode ? '提交更新到 GitHub' : '儲存並更新網站';
   render();
 }
 function showAuth(configured) {
   setupMode = !configured;
+  githubMode = false;
   authPanel.hidden = false;
   dashboard.hidden = true;
   $('#authTitle').textContent = setupMode ? '建立管理帳號' : '登入後台';
   $('#authHelp').textContent = setupMode ? '設定專屬帳號與密碼，完成後即可管理作品集。' : '請使用管理員帳號登入。';
   $('#authSubmit').textContent = setupMode ? '建立帳號並登入' : '登入';
   $('#confirmPasswordRow').hidden = !setupMode;
+  $('#authSecurityNote').textContent = '首次使用請建立管理帳號。密碼會以雜湊形式儲存在本機。';
   authForm.elements.password.autocomplete = setupMode ? 'new-password' : 'current-password';
   authForm.elements.password.minLength = setupMode ? 12 : 1;
   authForm.elements.confirmPassword.required = setupMode;
 }
 
 async function start() {
+  const isLocalServer = ['127.0.0.1', 'localhost'].includes(location.hostname) && location.port === '4173';
+  if (!isLocalServer) {
+    githubMode = true;
+    const token = sessionStorage.getItem(GITHUB_TOKEN_KEY);
+    if (token) {
+      try { await showDashboard(); return; }
+      catch (error) { sessionStorage.removeItem(GITHUB_TOKEN_KEY); showGitHubAuth(error.message); return; }
+    }
+    showGitHubAuth();
+    return;
+  }
   try {
     const session = await api('/api/session');
     if (session.authenticated) await showDashboard();
@@ -135,6 +237,12 @@ authForm.addEventListener('submit', async (event) => {
   const password = authForm.elements.password.value;
   $('#authError').textContent = '';
   try {
+    if (githubMode) {
+      sessionStorage.setItem(GITHUB_TOKEN_KEY, password);
+      await githubReadFile(CONTENT_PATH);
+      await showDashboard();
+      return;
+    }
     if (setupMode && password !== authForm.elements.confirmPassword.value) throw new Error('兩次輸入的密碼不一致。');
     await api(setupMode ? '/api/setup' : '/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) });
     await showDashboard();
@@ -147,10 +255,15 @@ $('#saveButton').addEventListener('click', async () => {
   button.textContent = '正在儲存…';
   try {
     content = collect();
-    await api('/api/content', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(content) });
-    setStatus('已儲存，重新整理網站即可看到更新。');
+    if (githubMode) {
+      await githubWriteFile(CONTENT_PATH, base64FromBytes(new TextEncoder().encode(`${JSON.stringify(content, null, 2)}\n`)), '更新作品集網站內容');
+      setStatus('內容已提交到 GitHub。GitHub Pages 部署完成後，網站就會顯示更新。');
+    } else {
+      await api('/api/content', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(content) });
+      setStatus('已儲存，重新整理網站即可看到更新。');
+    }
   } catch (error) { setStatus(error.message, true); }
-  finally { button.disabled = false; button.textContent = '儲存並更新網站'; }
+  finally { button.disabled = false; button.textContent = githubMode ? '提交更新到 GitHub' : '儲存並更新網站'; }
 });
 
 $$('[data-add]').forEach((button) => button.addEventListener('click', () => {
@@ -161,7 +274,7 @@ $$('[data-add]').forEach((button) => button.addEventListener('click', () => {
     ? { id, type: 'photo', title: '', englishTitle: '', medium: '', description: '', images: [] }
     : kind === 'projects'
       ? { id, title: '', englishTitle: '', tags: [], year: '', description: '', images: [], visible: true }
-      : { id, title: '', subtitle: '', date: '', category: '文章', summary: '', content: '', image: '' };
+      : { id, title: '', subtitle: '', date: '', category: '文章', summary: '', sections: [{ heading: '', body: '' }], images: [] };
   content[kind].push(defaults);
   render();
   $(`#${kind === 'gallery' ? 'galleryCards' : kind === 'projects' ? 'projectCards' : 'articleCards'} .editor-card:last-child`).scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -170,6 +283,8 @@ $$('[data-add]').forEach((button) => button.addEventListener('click', () => {
 $$('.card-list').forEach((holder) => holder.addEventListener('click', (event) => {
   const remove = event.target.closest('[data-remove-card]');
   const removeImage = event.target.closest('[data-remove-image]');
+  const addSection = event.target.closest('[data-add-section]');
+  const removeSection = event.target.closest('[data-remove-section]');
   if (remove) {
     content = collect();
     const card = remove.closest('.editor-card');
@@ -183,6 +298,17 @@ $$('.card-list').forEach((holder) => holder.addEventListener('click', (event) =>
     card.dataset.images = JSON.stringify(images);
     card.querySelector('.image-list').outerHTML = imageList(images);
   }
+  if (addSection) {
+    const card = addSection.closest('.editor-card');
+    const list = card.querySelector('.article-sections-list');
+    list.insertAdjacentHTML('beforeend', articleSectionMarkup({}, list.querySelectorAll('[data-article-section]').length));
+  }
+  if (removeSection) {
+    const section = removeSection.closest('[data-article-section]');
+    const list = section.parentElement;
+    section.remove();
+    list.querySelectorAll('[data-article-section]').forEach((item, index) => { item.querySelector('strong').textContent = `文章段落 ${index + 1}`; });
+  }
 }));
 
 $$('[data-upload]').forEach((input) => input.addEventListener('change', async () => {
@@ -192,18 +318,35 @@ $$('[data-upload]').forEach((input) => input.addEventListener('change', async ()
   [...input.files].forEach((file) => form.append('images', file));
   input.disabled = true;
   try {
-    const result = await api('/api/upload', { method: 'POST', body: form });
+    let uploadedFiles;
+    if (githubMode) {
+      uploadedFiles = [];
+      for (const file of [...input.files]) {
+        const fileName = `${Date.now()}-${crypto.randomUUID().slice(0, 12)}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '-')}`;
+        const bytes = new Uint8Array(await file.arrayBuffer());
+        await githubWriteFile(`images/uploads/${fileName}`, base64FromBytes(bytes), `上傳作品圖片 ${fileName}`);
+        uploadedFiles.push(`images/uploads/${fileName}`);
+      }
+    } else {
+      const result = await api('/api/upload', { method: 'POST', body: form });
+      uploadedFiles = result.files;
+    }
     const images = JSON.parse(card.dataset.images || '[]');
-    card.dataset.images = JSON.stringify([...images, ...result.files]);
-    card.querySelector('.image-list').outerHTML = imageList([...images, ...result.files]);
-    setStatus(`已上傳 ${result.files.length} 張圖片，請記得儲存內容。`);
+    card.dataset.images = JSON.stringify([...images, ...uploadedFiles]);
+    card.querySelector('.image-list').outerHTML = imageList([...images, ...uploadedFiles]);
+    setStatus(githubMode ? `已提交 ${uploadedFiles.length} 張圖片到 GitHub；編輯完成後請再提交內容。` : `已上傳 ${uploadedFiles.length} 張圖片，請記得儲存內容。`);
   } catch (error) { setStatus(error.message, true); }
   finally { input.disabled = false; input.value = ''; }
 }));
 
 $('#logoutButton').addEventListener('click', async () => {
-  await api('/api/logout', { method: 'POST' });
-  showAuth(true);
+  if (githubMode) {
+    sessionStorage.removeItem(GITHUB_TOKEN_KEY);
+    showGitHubAuth();
+  } else {
+    await api('/api/logout', { method: 'POST' });
+    showAuth(true);
+  }
 });
 
 start();

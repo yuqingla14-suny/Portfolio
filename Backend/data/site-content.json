@@ -187,14 +187,23 @@
       "date": "2026.08",
       "category": "專題報導",
       "summary": "介紹傳統美容技藝",
+<<<<<<< Updated upstream
       "images": [
         "images/小誌發表.jpg"
       ],
+=======
+>>>>>>> Stashed changes
       "sections": [
         {
           "heading": "",
           "body": "介紹傳統美容技藝。"
         }
+<<<<<<< Updated upstream
+=======
+      ],
+      "images": [
+        "images/小誌發表.jpg"
+>>>>>>> Stashed changes
       ]
     },
     {
@@ -204,14 +213,23 @@
       "date": "2025.11",
       "category": "專題報導",
       "summary": "看見異「竹」維生的人們",
+<<<<<<< Updated upstream
       "images": [
         "images/小誌發表.jpg"
       ],
+=======
+>>>>>>> Stashed changes
       "sections": [
         {
           "heading": "",
           "body": "看見異「竹」維生的人們。"
         }
+<<<<<<< Updated upstream
+=======
+      ],
+      "images": [
+        "images/小誌發表.jpg"
+>>>>>>> Stashed changes
       ]
     },
     {
@@ -221,14 +239,23 @@
       "date": "2025.10",
       "category": "人物報導",
       "summary": "人生沒有白走的路",
+<<<<<<< Updated upstream
       "images": [
         "images/小誌發表.jpg"
       ],
+=======
+>>>>>>> Stashed changes
       "sections": [
         {
           "heading": "",
           "body": "人生沒有白走的路。"
         }
+<<<<<<< Updated upstream
+=======
+      ],
+      "images": [
+        "images/小誌發表.jpg"
+>>>>>>> Stashed changes
       ]
     },
     {
@@ -238,6 +265,7 @@
       "date": "2025.09",
       "category": "紀實報導",
       "summary": "有機農園與親子體驗活動",
+<<<<<<< Updated upstream
       "images": [],
       "sections": [
         {
@@ -252,6 +280,16 @@
           "heading": "守護珍愛的土地，願持續推動親子農業",
           "body": "「梁爺爺柚鵝園」是園主梁博皓的爺爺在罹患阿茲海默症前，親手規劃好區域，是梁博皓心中最珍貴的禮物，因此更積極地守護這片土地。他加入產銷班與青農會精進專業，將柚鵝園打造成鴨鵝與果樹共生的環境，讓鴨鵝以豆渣為食，排泄物滋養果樹，形成自然循環，也讓文旦風味更好。\n家長表示，這活動不僅讓小孩子出門放風、學習，大人們也可以品嚐在地好吃的紅文旦，未來舉辦活動一定還會再來支持。梁博皓分享，活動印象最深的部分，是看到孩子撿到鴨蛋的喜悅與見到農具的好奇心。他說，辦活動的收穫，是讓他們更確定想要往親子農業、共學的方向努力。預計於明年三月文旦開花季會再度舉辦相關活動，持續推廣食農教育與果園體驗。"
         }
+=======
+      "sections": [
+        {
+          "heading": "",
+          "body": "有機農園與親子體驗活動。"
+        }
+      ],
+      "images": [
+        "images/小誌發表.jpg"
+>>>>>>> Stashed changes
       ]
     }
   ]
